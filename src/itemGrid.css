@@ -1,0 +1,8 @@
+#itemGrid {
+  display: grid;
+  width: 80vw;
+  height: 80vw;
+  grid-template-rows: repeat(10, auto);
+  grid-template-columns: repeat(10, auto);
+  margin: auto;
+}
