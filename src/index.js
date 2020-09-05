@@ -8,10 +8,9 @@ import Total from './Total.js'
 const App = () => {
   const title = 'Groceryio'
   const products = [
-    {
-      name: 'apple',
-      quantity: 5
-    }
+    { name: 'apple', quantity: 5 },
+    { name: 'bananas', quantity: 1 },
+    { name: 'oranges', quantity: 1 },
   ]
   return (
     <div id="App">

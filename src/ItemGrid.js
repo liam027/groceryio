@@ -2,10 +2,19 @@ import React from 'react';
 import ItemCard from './ItemCard.js'
 import './itemGrid.css';
 
-const ItemGrid = (props) => {
+const ItemGrid = ( { products } ) => {
+
+  const populateProductCards = (products) => (
+    <>
+      {products.map(product => (
+        <ItemCard product={product}/>
+      ))}
+    </>
+  );
+
   return (
     <div id="itemGrid">
-      <ItemCard product={props.products[0]}/>
+      { populateProductCards(products) }
     </div>
   )
 }
