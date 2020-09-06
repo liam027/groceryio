@@ -16,16 +16,16 @@ const ItemCard = ({ product }) => {
       setQuantity(quantity - 1)
     }
   }
+
   return (
     <div className="itemCard">
       <div className="name">{name.toUpperCase()}</div>
-      <div className="icon">
+      <div className="icon noselect" onClick={increaseByOne}>
 
       </div>
+
       <div className="controls">
-        <div className="btn minus noselect"onClick={decreaseByOne}>-</div>
-        <div className="btn quantity">{quantity}</div>
-        <div className="btn plus noselect" onClick={increaseByOne}>+</div>
+        <div className="quantity noselect"onClick={decreaseByOne}>{quantity}</div>
       </div>
     </div>
   )

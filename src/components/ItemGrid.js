@@ -7,7 +7,7 @@ const ItemGrid = ( { products } ) => {
   const populateProductCards = (products) => (
     <>
       {products.map(product => (
-        <ItemCard product={product}/>
+        <ItemCard key={product.name} product={product}/>
       ))}
     </>
   );

@@ -1,23 +1,11 @@
 import ReactDOM from 'react-dom'
 import React from 'react';
-import './index.css'
-import Header from './Header.js'
-import ItemGrid from './ItemGrid.js'
-import Total from './Total.js'
+import App from './components/App.js'
 
-const App = () => {
-  const title = 'Groceryio'
-  const products = [
-    { name: 'apple', quantity: 5 },
-    { name: 'bananas', quantity: 1 },
-    { name: 'oranges', quantity: 1 },
-  ]
-  return (
-    <div id="App">
-      <Header title={title} />
-      <ItemGrid products={products}/>
-    </div>
-  )
-}
+const products = [
+  { name: 'apple', quantity: 5 },
+  { name: 'bananas', quantity: 1 },
+  { name: 'oranges', quantity: 1 },
+]
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<App products={products} />, document.getElementById('root'))
