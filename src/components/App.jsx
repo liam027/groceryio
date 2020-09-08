@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import axios from 'axios'
+import React, { useState, useEffect  } from 'react';
 import './App.css';
 import Header from './Header';
 import ItemGrid from './ItemGrid';
 import FilterBar from './FilterBar';
 
-const App = (props) => {
+const App = () => {
   const title = 'Groceryio';
   const CATEGORIES = [
     "all"    ,
@@ -13,16 +14,28 @@ const App = (props) => {
     "frozen" ,
     "meat"   ,
   ]
-  const [products, setProducts] = useState(props.products)
+  const [products, setProducts] = useState([])
   const [newProduct, setNewProduct] = useState('')
   const [filter, setFilter] = useState("all")
 
+  const hook = () => {
+    console.log('effect');
+    axios
+      .get('http://localhost:3001/products')
+      .then(response => {
+        console.log('product data retreived')
+        setProducts(response.data)
+    })
+  }
+
+  useEffect(hook, []) // [] specifies the effect to only run after first render
+
   const productsToDisplay = () => {
-    if(filter == "all"){
+    if(filter === "all"){
       return products
     }
     else {
-      return products.filter((product) => product.category == filter)
+      return products.filter((product) => product.category === filter)
     }
   }
 
