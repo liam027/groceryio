@@ -1,23 +1,46 @@
 {
   "products": [
-    { "name": "apple",
+    {
+      "id": 1,
+      "name": "apple",
       "category": "produce",
-      "quantity": 0 },
-    { "name": "bananas",
+      "quantity": 0
+    },
+    {
+      "id": 2,
+      "name": "bananas",
       "category": "produce",
-      "quantity": 0 },
-    { "name": "oranges",
+      "quantity": 0
+    },
+    {
+      "id": 3,
+      "name": "oranges",
       "category": "produce",
-      "quantity": 0 },
-    { "name": "chicken",
+      "quantity": 0
+    },
+    {
+      "id": 4,
+      "name": "chicken",
       "category": "meat",
-      "quantity": 0 },
-    { "name": "ham",
+      "quantity": 0
+    },
+    {
+      "id": 5,
+      "name": "ham",
       "category": "meat",
-      "quantity": 0 },
-    { "name": "ice cream",
+      "quantity": 0
+    },
+    {
+      "id": 6,
+      "name": "ice cream",
       "category": "frozen",
       "quantity": 0
+    },
+    {
+      "name": "lemon",
+      "category": "produce",
+      "quantity": 0,
+      "id": 7
     }
   ]
 }

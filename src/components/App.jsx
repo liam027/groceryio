@@ -51,8 +51,13 @@ const App = () => {
       category: 'produce',
       quantity: 0
     };
-    setProducts(products.concat(productObj));
-    setNewProduct('');
+    axios
+      .post('http://localhost:3001/products', productObj)
+      .then(response => {
+        console.log('POST response', response);
+        setProducts(products.concat(response.data));
+        setNewProduct('');
+    })
   }
 
   const handleNewProductChange = (event) => {
