@@ -2,35 +2,38 @@ import './App.css';
 import FilterBar from './FilterBar';
 import Header from './Header';
 import ItemGrid from './ItemGrid';
+import Notification from './Notification';
 import productService from '../services/products'
-import React, { useState, useEffect  } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const App = () => {
   const title = 'Groceryio';
   const MAX_PRODUCT_NAME_LENGTH = 28;
   const CATEGORIES = [
-    "all"    ,
+    "all",
     "produce",
-    "dairy"  ,
-    "frozen" ,
-    "meat"   ,
+    "dairy",
+    "frozen",
+    "meat",
   ]
   const [products, setProducts] = useState([])
   const [newProduct, setNewProduct] = useState('')
   const [filter, setFilter] = useState("all")
+  const [message, setMessage] = useState('Enter a new product!')
 
   const hook = () => {
     productService
       .getAll()
       .then(allProducts => {
         setProducts(allProducts)
-    })
+        setMessage('Products loaded!')
+      })
   }
 
   useEffect(hook, []) // [] specifies the effect to only run after first render
 
   const productsToDisplay = () => {
-    if(filter === "all"){
+    if (filter === 'all') {
       return products
     }
     else {
@@ -55,6 +58,7 @@ const App = () => {
       .then(newProduct => {
         setProducts(products.concat(newProduct));
         setNewProduct('');
+        setMessage(`${newProduct.name} was added to your list.`)
       })
   }
 
@@ -65,24 +69,31 @@ const App = () => {
         console.log('Product deleted. ID: ', response);
         setProducts(products.filter(product => product.id !== id))
       })
+      .catch(error => {
+        setMessage(`ERROR: The ID '${id}' is not a current or valid product ID.`)
+      })
   }
 
   const handleNewProductChange = (event) => {
-    if(event.target.value.length < MAX_PRODUCT_NAME_LENGTH ) {
+    if (event.target.value.length < MAX_PRODUCT_NAME_LENGTH) {
       setNewProduct(event.target.value);
+      setMessage(``);
     }
     else {
-      console.log("New product name too long");
+      setMessage(`The new product name you provided is too long. Please make it less than ${MAX_PRODUCT_NAME_LENGTH} characters.`);
     }
   }
 
   return (
     <div id="App">
       <Header title={title} />
-      <form id="productForm" onSubmit={addProduct}>
-        <input value={newProduct} onChange={handleNewProductChange} />
-        <button type="submit" id="submitProductButton">Save</button>
-      </form>
+      <Notification message={message} />
+      <div id="productForm-container">
+        <form id="productForm" onSubmit={addProduct}>
+          <input value={newProduct} onChange={handleNewProductChange} />
+          <button type="submit" id="submitProductButton">Save</button>
+        </form>
+      </div>
       <FilterBar filters={CATEGORIES} defineFilter={defineFilter} />
       <ItemGrid products={productsToDisplay()} deleteProduct={deleteProduct} />
     </div>
