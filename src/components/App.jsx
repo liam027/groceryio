@@ -1,12 +1,13 @@
-import axios from 'axios'
-import React, { useState, useEffect  } from 'react';
 import './App.css';
+import FilterBar from './FilterBar';
 import Header from './Header';
 import ItemGrid from './ItemGrid';
-import FilterBar from './FilterBar';
+import productService from '../services/products'
+import React, { useState, useEffect  } from 'react';
 
 const App = () => {
   const title = 'Groceryio';
+  const MAX_PRODUCT_NAME_LENGTH = 28;
   const CATEGORIES = [
     "all"    ,
     "produce",
@@ -19,12 +20,10 @@ const App = () => {
   const [filter, setFilter] = useState("all")
 
   const hook = () => {
-    console.log('effect');
-    axios
-      .get('http://localhost:3001/products')
-      .then(response => {
-        console.log('product data retreived')
-        setProducts(response.data)
+    productService
+      .getAll()
+      .then(allProducts => {
+        setProducts(allProducts)
     })
   }
 
@@ -51,29 +50,41 @@ const App = () => {
       category: 'produce',
       quantity: 0
     };
-    axios
-      .post('http://localhost:3001/products', productObj)
-      .then(response => {
-        console.log('POST response', response);
-        setProducts(products.concat(response.data));
+    productService
+      .create(productObj)
+      .then(newProduct => {
+        setProducts(products.concat(newProduct));
         setNewProduct('');
-    })
+      })
+  }
+
+  const deleteProduct = (id) => {
+    productService
+      .deleteProduct(id)
+      .then(response => {
+        console.log('Product deleted. ID: ', response);
+        setProducts(products.filter(product => product.id !== id))
+      })
   }
 
   const handleNewProductChange = (event) => {
-    console.log(event.target.value);
-    setNewProduct(event.target.value);
+    if(event.target.value.length < MAX_PRODUCT_NAME_LENGTH ) {
+      setNewProduct(event.target.value);
+    }
+    else {
+      console.log("New product name too long");
+    }
   }
 
   return (
     <div id="App">
       <Header title={title} />
-      <FilterBar filters={CATEGORIES} defineFilter={defineFilter} />
-      <ItemGrid products={productsToDisplay()} />
-      <form onSubmit={addProduct}>
+      <form id="productForm" onSubmit={addProduct}>
         <input value={newProduct} onChange={handleNewProductChange} />
-        <button type="submit">Save</button>
+        <button type="submit" id="submitProductButton">Save</button>
       </form>
+      <FilterBar filters={CATEGORIES} defineFilter={defineFilter} />
+      <ItemGrid products={productsToDisplay()} deleteProduct={deleteProduct} />
     </div>
   );
 };
