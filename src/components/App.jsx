@@ -1,7 +1,9 @@
 import './App.css';
+import APP_STATES from '../states'
 import FilterBar from './FilterBar';
 import Header from './Header';
 import ItemGrid from './ItemGrid';
+import LoginModal from './LoginModal';
 import Notification from './Notification';
 import productService from '../services/products'
 import React, { useState, useEffect } from 'react';
@@ -16,6 +18,8 @@ const App = () => {
     "frozen",
     "meat",
   ]
+  const [appState, setAppState] = useState(APP_STATES.GRID)
+  const [user, setUser] = useState(null)
   const [products, setProducts] = useState([])
   const [newProduct, setNewProduct] = useState('')
   const [filter, setFilter] = useState("all")
@@ -84,9 +88,14 @@ const App = () => {
     }
   }
 
+  const loginForm = () => {
+    return <LoginModal setUser={setUser} setMessage={setMessage} />
+  }
+
   return (
     <div id="App">
-      <Header title={title} />
+      { appState === APP_STATES.LOGIN && loginForm() }
+      <Header title={title} setAppState={setAppState} />
       <Notification message={message} />
       <div id="productForm-container">
         <form id="productForm" onSubmit={addProduct}>

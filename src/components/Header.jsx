@@ -1,6 +1,7 @@
 import React from 'react';
+import APP_STATES from '../states'
 
-const Header = (props) => {
+const Header = ({ title, setAppState }) => {
 
   const headerStyle = {
     display: 'grid',
@@ -28,9 +29,9 @@ const Header = (props) => {
 
   return (
     <header style={headerStyle}>
-      <span style={titleStyle}>{props.title}</span>
+      <span style={titleStyle}>{title}</span>
       <div style={loginStyle}>
-        <span >Login</span>
+        <span onClick={() => setAppState(APP_STATES.LOGIN)}>Login</span>
       </div>
     </header>
   )
