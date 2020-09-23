@@ -31,3 +31,9 @@ html, body {
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
+#productForm-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
+}

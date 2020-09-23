@@ -1,3 +1,5 @@
 .message {
+  margin: 10px auto;
   color: red;
+  text-align: center;
 }
