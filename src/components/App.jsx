@@ -89,7 +89,7 @@ const App = () => {
   }
 
   const loginForm = () => {
-    return <LoginModal setUser={setUser} setMessage={setMessage} />
+    return <LoginModal setUser={setUser} setMessage={setMessage} setAppState={setAppState} />
   }
 
   return (
