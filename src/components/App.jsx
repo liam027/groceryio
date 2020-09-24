@@ -25,7 +25,18 @@ const App = () => {
   const [filter, setFilter] = useState("all")
   const [message, setMessage] = useState('Enter a new product!')
 
-  const hook = () => {
+  const getLoggedUser = () => {
+    const loggedUser = window.localStorage.getItem('loggedGroceryIOUser')
+    if (loggedUser) {
+      const user = JSON.parse(loggedUser)
+      setUser(user)
+      productService.setToken(user.token)
+    }
+  }
+
+  useEffect(getLoggedUser, []) // [] specifies the effect to only run after first render
+
+  const getProductsHook = () => {
     productService
       .getAll()
       .then(allProducts => {
@@ -34,7 +45,7 @@ const App = () => {
       })
   }
 
-  useEffect(hook, []) // [] specifies the effect to only run after first render
+  useEffect(getProductsHook, []) // [] specifies the effect to only run after first render
 
   const productsToDisplay = () => {
     if (filter === 'all') {
