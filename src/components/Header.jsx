@@ -1,7 +1,7 @@
 import React from 'react';
 import APP_STATES from '../states'
 
-const Header = ({ title, setAppState }) => {
+const Header = ({ title, setAppState, user, logout }) => {
 
   const headerStyle = {
     display: 'grid',
@@ -27,12 +27,29 @@ const Header = ({ title, setAppState }) => {
     cursor: 'pointer'
   }
 
-  return (
-    <header style={headerStyle}>
-      <span style={titleStyle}>{title}</span>
+  const loginButton = () => {
+    return (
       <div style={loginStyle} onClick={() => setAppState(APP_STATES.LOGIN)}>
         <span>Login</span>
       </div>
+    )
+  }
+
+  const logoutButton = () => {
+    return (
+      <div style={loginStyle} onClick={logout}>
+        <span>Logout</span>
+      </div>
+    )
+  }
+
+  return (
+    <header style={headerStyle}>
+      <span style={titleStyle}>{title}</span>
+      {user === null ?
+        loginButton() :
+        logoutButton()
+      }
     </header>
   )
 }

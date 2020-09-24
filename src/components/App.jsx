@@ -103,10 +103,16 @@ const App = () => {
     return <LoginModal setUser={setUser} setMessage={setMessage} setAppState={setAppState} />
   }
 
+  const logout = () => {
+    setUser(null)
+    productService.setToken(null)
+    window.localStorage.removeItem('loggedGroceryIOUser')
+  }
+
   return (
     <div id="App">
       { appState === APP_STATES.LOGIN && loginForm() }
-      <Header title={title} setAppState={setAppState} />
+      <Header title={title} user={user} setAppState={setAppState} logout={logout} />
       <Notification message={message} />
       <div id="productForm-container">
         <form id="productForm" onSubmit={addProduct}>
