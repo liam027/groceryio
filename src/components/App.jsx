@@ -60,6 +60,14 @@ const App = () => {
     console.log(category);
   }
 
+  const addProduct = (productObj) => {
+    productService
+      .create(productObj)
+      .then(newProduct => {
+        setProducts(products.concat(newProduct));
+      })
+  }
+
   const deleteProduct = (id) => {
     productService
       .deleteProduct(id)
@@ -87,7 +95,7 @@ const App = () => {
       { appState === APP_STATES.LOGIN && loginForm()}
       <Header title={title} user={user} setAppState={setAppState} logout={logout} />
       <Notification message={message} />
-      <ProductForm setProducts={setProducts} setMessage={setMessage} products={products} />
+      <ProductForm addProduct={addProduct} setMessage={setMessage} />
       <FilterBar filters={CATEGORIES} defineFilter={defineFilter} />
       <ItemGrid products={productsToDisplay()} deleteProduct={deleteProduct} />
     </div>
