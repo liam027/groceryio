@@ -5,12 +5,12 @@ import Header from './Header';
 import ItemGrid from './ItemGrid';
 import LoginModal from './LoginModal';
 import Notification from './Notification';
+import ProductForm from './ProductForm'
 import productService from '../services/products'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 
 const App = () => {
   const title = 'Groceryio';
-  const MAX_PRODUCT_NAME_LENGTH = 28;
   const CATEGORIES = [
     "all",
     "produce",
@@ -21,7 +21,6 @@ const App = () => {
   const [appState, setAppState] = useState(APP_STATES.GRID)
   const [user, setUser] = useState(null)
   const [products, setProducts] = useState([])
-  const [newProduct, setNewProduct] = useState('')
   const [filter, setFilter] = useState("all")
   const [message, setMessage] = useState('Enter a new product!')
 
@@ -61,22 +60,6 @@ const App = () => {
     console.log(category);
   }
 
-  const addProduct = (event) => {
-    event.preventDefault();
-    const productObj = {
-      name: newProduct,
-      category: 'produce',
-      quantity: 0
-    };
-    productService
-      .create(productObj)
-      .then(newProduct => {
-        setProducts(products.concat(newProduct));
-        setNewProduct('');
-        setMessage(`${newProduct.name} was added to your list.`)
-      })
-  }
-
   const deleteProduct = (id) => {
     productService
       .deleteProduct(id)
@@ -87,16 +70,6 @@ const App = () => {
       .catch(error => {
         setMessage(`ERROR: The ID '${id}' is not a current or valid product ID.`)
       })
-  }
-
-  const handleNewProductChange = (event) => {
-    if (event.target.value.length < MAX_PRODUCT_NAME_LENGTH) {
-      setNewProduct(event.target.value);
-      setMessage(``);
-    }
-    else {
-      setMessage(`The new product name you provided is too long. Please make it less than ${MAX_PRODUCT_NAME_LENGTH} characters.`);
-    }
   }
 
   const loginForm = () => {
@@ -111,15 +84,10 @@ const App = () => {
 
   return (
     <div id="App">
-      { appState === APP_STATES.LOGIN && loginForm() }
+      { appState === APP_STATES.LOGIN && loginForm()}
       <Header title={title} user={user} setAppState={setAppState} logout={logout} />
       <Notification message={message} />
-      <div id="productForm-container">
-        <form id="productForm" onSubmit={addProduct}>
-          <input value={newProduct} onChange={handleNewProductChange} />
-          <button type="submit" id="submitProductButton">Save</button>
-        </form>
-      </div>
+      <ProductForm setProducts={setProducts} setMessage={setMessage} products={products} />
       <FilterBar filters={CATEGORIES} defineFilter={defineFilter} />
       <ItemGrid products={productsToDisplay()} deleteProduct={deleteProduct} />
     </div>
