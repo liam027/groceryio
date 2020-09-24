@@ -15,6 +15,7 @@ const LoginModal = ({ setAppState, setUser, setMessage }) => {
       console.log({ username, password })
       const user = await loginService.login({ username, password })
 
+      window.localStorage.setItem('loggedGreceryIOUser', JSON.stringify(user))
       productsService.setToken(user.token)
       setUser(user)
       setUsername('')
