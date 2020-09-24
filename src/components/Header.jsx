@@ -30,8 +30,8 @@ const Header = ({ title, setAppState }) => {
   return (
     <header style={headerStyle}>
       <span style={titleStyle}>{title}</span>
-      <div style={loginStyle}>
-        <span onClick={() => setAppState(APP_STATES.LOGIN)}>Login</span>
+      <div style={loginStyle} onClick={() => setAppState(APP_STATES.LOGIN)}>
+        <span>Login</span>
       </div>
     </header>
   )
