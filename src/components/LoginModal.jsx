@@ -1,5 +1,6 @@
 import APP_STATES from '../states'
 import loginService from '../services/login'
+import productsService from '../services/products'
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './loginModal.css';
@@ -13,6 +14,8 @@ const LoginModal = ({ setAppState, setUser, setMessage }) => {
     try {
       console.log({ username, password })
       const user = await loginService.login({ username, password })
+
+      productsService.setToken(user.token)
       setUser(user)
       setUsername('')
       setPassword('')
