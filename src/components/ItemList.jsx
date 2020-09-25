@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ItemCard from './ItemCard';
-import './itemGrid.css';
+import './itemList.css';
 
-const ItemGrid = ({ products, deleteProduct }) => {
+const ItemList = ({ products, deleteProduct }) => {
 
   const populateProductCards = (prods) => (
     <>
@@ -20,8 +20,8 @@ const ItemGrid = ({ products, deleteProduct }) => {
   );
 };
 
-ItemGrid.propTypes = {
+ItemList.propTypes = {
   products: PropTypes.array.isRequired,
 };
 
-export default ItemGrid;
+export default ItemList;

@@ -2,12 +2,15 @@ import './App.css';
 import APP_STATES from '../states'
 import FilterBar from './FilterBar';
 import Header from './Header';
-import ItemGrid from './ItemGrid';
+import ItemTile from './ItemTile';
+import ItemList from './ItemList';
 import LoginModal from './LoginModal';
 import Notification from './Notification';
 import ProductForm from './ProductForm'
 import productService from '../services/products'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+import Togglable from './Toggleable';
+import ViewSelector from './ViewSelector'
 
 const App = () => {
   const title = 'Groceryio';
@@ -18,9 +21,11 @@ const App = () => {
     "frozen",
     "meat",
   ]
-  const [appState, setAppState] = useState(APP_STATES.GRID)
+
+  const [appState, setAppState] = useState(APP_STATES.TILE)
   const [user, setUser] = useState(null)
   const [products, setProducts] = useState([])
+  const newProductFormRef = useRef()
   const [filter, setFilter] = useState("all")
   const [message, setMessage] = useState('Enter a new product!')
 
@@ -75,7 +80,7 @@ const App = () => {
         console.log('Product deleted. ID: ', response);
         setProducts(products.filter(product => product.id !== id))
       })
-      .catch(error => {
+      .catch(() => {
         setMessage(`ERROR: The ID '${id}' is not a current or valid product ID.`)
       })
   }
@@ -90,14 +95,30 @@ const App = () => {
     window.localStorage.removeItem('loggedGroceryIOUser')
   }
 
+  const tileView = () => {
+    return(
+      <ItemTile products={productsToDisplay()} deleteProduct={deleteProduct} />
+    )
+  }
+
+  const listView = () => {
+    return(
+      <ItemList products={productsToDisplay()} deleteProduct={deleteProduct} />
+    )
+  }
+
   return (
     <div id="App">
       { appState === APP_STATES.LOGIN && loginForm()}
       <Header title={title} user={user} setAppState={setAppState} logout={logout} />
       <Notification message={message} />
-      <ProductForm addProduct={addProduct} setMessage={setMessage} />
+      <Togglable buttonLabel="Add Product" ref={newProductFormRef}>
+        <ProductForm addProduct={addProduct} setMessage={setMessage} />
+      </Togglable>
+      <ViewSelector />
       <FilterBar filters={CATEGORIES} defineFilter={defineFilter} />
-      <ItemGrid products={productsToDisplay()} deleteProduct={deleteProduct} />
+      { appState === APP_STATES.LIST && listView()}
+      { appState === APP_STATES.TILE && tileView()}
     </div>
   );
 };
