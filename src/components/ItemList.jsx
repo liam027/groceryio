@@ -8,13 +8,17 @@ const ItemList = ({ products, deleteProduct }) => {
   const populateProductCards = (prods) => (
     <>
       {prods.map((product) => (
-        <ItemCard key={product.id} product={product} deleteProduct={deleteProduct} />
+        <div key={product.id} className="list-item">
+          <span>{product.name}</span>
+          <span>{product.quantity}</span>
+          <span>X</span>
+        </div>
       ))}
     </>
   );
 
   return (
-    <div id="itemGrid">
+    <div id="itemList">
       { populateProductCards(products) }
     </div>
   );
