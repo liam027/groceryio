@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ItemCard from './ItemCard';
 import './itemList.css';
 
 const ItemList = ({ products, deleteProduct }) => {
 
-  const populateProductCards = (prods) => (
+  const populateProductList = (prods) => (
     <>
       {prods.map((product) => (
         <div key={product.id} className="list-item">
@@ -19,7 +18,7 @@ const ItemList = ({ products, deleteProduct }) => {
 
   return (
     <div id="itemList">
-      { populateProductCards(products) }
+      { populateProductList(products) }
     </div>
   );
 };
