@@ -22,7 +22,7 @@ const App = () => {
     "meat",
   ]
 
-  const [appState, setAppState] = useState(APP_STATES.TILE)
+  const [appState, setAppState] = useState(APP_STATES.LIST)
   const [user, setUser] = useState(null)
   const [products, setProducts] = useState([])
   const newProductFormRef = useRef()
@@ -115,7 +115,7 @@ const App = () => {
       <Togglable buttonLabel="Add Product" ref={newProductFormRef}>
         <ProductForm addProduct={addProduct} setMessage={setMessage} />
       </Togglable>
-      <ViewSelector />
+      <ViewSelector setAppState={setAppState} />
       <FilterBar filters={CATEGORIES} defineFilter={defineFilter} />
       { appState === APP_STATES.LIST && listView()}
       { appState === APP_STATES.TILE && tileView()}
