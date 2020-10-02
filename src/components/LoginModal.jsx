@@ -65,7 +65,9 @@ const LoginModal = ({ setAppState, setUser, setMessage }) => {
 }
 
 LoginModal.propTypes = {
-  errorMessage: PropTypes.string,
-};
+  setAppState: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired,
+  setMessage: PropTypes.func.isRequired
+}
 
 export default LoginModal;
