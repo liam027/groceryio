@@ -22,7 +22,7 @@ const ItemCard = ({ product, deleteProduct }) => {
     <div className="itemCard">
       <div className="name" onClick={increaseByOne} >{name.toUpperCase()}</div>
       <div className="controls">
-        <div className="noselect" onClick={() => deleteProduct(product.id)}>X</div>
+        <div className="delete noselect" onClick={() => deleteProduct(product.id)}>X</div>
         <div className="quantity noselect" onClick={decreaseByOne}>{quantity}</div>
       </div>
     </div>
