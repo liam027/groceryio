@@ -1,32 +1,32 @@
-import './App.css';
+import './App.css'
 import APP_STATES from '../states'
-import FilterBar from './FilterBar';
-import Header from './Header';
-import ItemTile from './ItemTile';
-import ItemList from './ItemList';
-import LoginModal from './LoginModal';
-import Notification from './Notification';
+import FilterBar from './FilterBar'
+import Header from './Header'
+import ItemTile from './ItemTile'
+import ItemList from './ItemList'
+import LoginModal from './LoginModal'
+import Notification from './Notification'
 import ProductForm from './ProductForm'
 import productService from '../services/products'
 import React, { useState, useEffect, useRef } from 'react'
-import Togglable from './Toggleable';
+import Togglable from './Toggleable'
 import ViewSelector from './ViewSelector'
 
 const App = () => {
-  const title = 'Groceryio';
+  const title = 'Groceryio'
   const CATEGORIES = [
-    "all",
-    "produce",
-    "dairy",
-    "frozen",
-    "meat",
+    'all',
+    'produce',
+    'dairy',
+    'frozen',
+    'meat',
   ]
 
+  const newProductFormRef = useRef()
   const [appState, setAppState] = useState(APP_STATES.LIST)
   const [user, setUser] = useState(null)
   const [products, setProducts] = useState([])
-  const newProductFormRef = useRef()
-  const [filter, setFilter] = useState("all")
+  const [filter, setFilter] = useState('all')
   const [message, setMessage] = useState('Enter a new product!')
 
   const getLoggedUser = () => {
@@ -61,15 +61,16 @@ const App = () => {
   }
 
   const defineFilter = (category) => {
-    setFilter(category);
-    console.log(category);
+    setFilter(category)
+    console.log(category)
   }
 
   const addProduct = (productObj) => {
+    newProductFormRef.current.toggleVisibility()
     productService
       .create(productObj)
       .then(newProduct => {
-        setProducts(products.concat(newProduct));
+        setProducts(products.concat(newProduct))
       })
   }
 
@@ -77,7 +78,7 @@ const App = () => {
     productService
       .deleteProduct(id)
       .then(response => {
-        console.log('Product deleted. ID: ', response);
+        console.log('Product deleted. ID: ', response)
         setProducts(products.filter(product => product.id !== id))
       })
       .catch(() => {
@@ -96,13 +97,13 @@ const App = () => {
   }
 
   const tileView = () => {
-    return(
+    return (
       <ItemTile products={productsToDisplay()} deleteProduct={deleteProduct} />
     )
   }
 
   const listView = () => {
-    return(
+    return (
       <ItemList products={productsToDisplay()} deleteProduct={deleteProduct} />
     )
   }
@@ -112,7 +113,7 @@ const App = () => {
       { appState === APP_STATES.LOGIN && loginForm()}
       <Header title={title} user={user} setAppState={setAppState} logout={logout} />
       <Notification message={message} />
-      <Togglable buttonLabel="Add Product" ref={newProductFormRef}>
+      <Togglable buttonLabel='Add Product' ref={newProductFormRef}>
         <ProductForm addProduct={addProduct} setMessage={setMessage} />
       </Togglable>
       <ViewSelector setAppState={setAppState} />
@@ -120,7 +121,7 @@ const App = () => {
       { appState === APP_STATES.LIST && listView()}
       { appState === APP_STATES.TILE && tileView()}
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App

@@ -26,7 +26,7 @@ const LoginModal = ({ setAppState, setUser, setMessage }) => {
       setMessage('Wrong credentials')
       setTimeout(() => {
         setMessage(null)
-      }, 5000);
+      }, 5000)
     }
   }
 
@@ -70,4 +70,4 @@ LoginModal.propTypes = {
   setMessage: PropTypes.func.isRequired
 }
 
-export default LoginModal;
+export default LoginModal

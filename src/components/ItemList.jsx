@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import './itemList.css';
+import React from 'react'
+import PropTypes from 'prop-types'
+import './itemList.css'
 
 const ItemList = ({ products, deleteProduct }) => {
 
@@ -14,17 +14,17 @@ const ItemList = ({ products, deleteProduct }) => {
         </div>
       ))}
     </>
-  );
+  )
 
   return (
     <div id="itemList">
       { populateProductList(products) }
     </div>
-  );
-};
+  )
+}
 
 ItemList.propTypes = {
   products: PropTypes.array.isRequired,
-};
+}
 
-export default ItemList;
+export default ItemList

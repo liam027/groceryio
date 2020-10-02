@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import ItemCard from './ItemCard';
-import './itemTile.css';
+import React from 'react'
+import PropTypes from 'prop-types'
+import ItemCard from './ItemCard'
+import './itemTile.css'
 
 const ItemTile = ({ products, deleteProduct }) => {
 
@@ -11,17 +11,17 @@ const ItemTile = ({ products, deleteProduct }) => {
         <ItemCard key={product.id} product={product} deleteProduct={deleteProduct} />
       ))}
     </>
-  );
+  )
 
   return (
     <div id="itemTile">
       { populateProductCards(products) }
     </div>
-  );
-};
+  )
+}
 
 ItemTile.propTypes = {
   products: PropTypes.array.isRequired,
-};
+}
 
-export default ItemTile;
+export default ItemTile

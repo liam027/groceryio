@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import APP_STATES from '../states'
 
 const Header = ({ title, setAppState, user, logout }) => {
@@ -54,4 +54,4 @@ const Header = ({ title, setAppState, user, logout }) => {
   )
 }
 
-export default Header;
+export default Header
