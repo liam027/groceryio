@@ -1,9 +1,9 @@
 import APP_STATES from '../states'
 import loginService from '../services/login'
 import productsService from '../services/products'
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import './loginModal.css';
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import './loginModal.css'
 
 const LoginModal = ({ setAppState, setUser, setMessage }) => {
   const [username, setUsername] = useState('')
@@ -61,8 +61,8 @@ const LoginModal = ({ setAppState, setUser, setMessage }) => {
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
 LoginModal.propTypes = {
   errorMessage: PropTypes.string,

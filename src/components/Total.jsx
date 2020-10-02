@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const Total = (props) => {
   return (
@@ -6,4 +6,4 @@ const Total = (props) => {
   )
 }
 
-export default Total;
+export default Total

@@ -26,7 +26,7 @@ const update = async (id, newObject) => {
 }
 
 const deleteProduct = async (id) => {
-  const response = await axios.delete(`${baseUrl}/${id}`)
+  await axios.delete(`${baseUrl}/${id}`)
   return id
 }
 

@@ -1,6 +1,6 @@
 const APP_STATES = {
-  TILE: "tile",
-  LIST: "list",
+  TILE: 'tile',
+  LIST: 'list',
   LOGIN: 'login'
 }
 
