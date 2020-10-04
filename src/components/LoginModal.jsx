@@ -55,7 +55,7 @@ const LoginModal = ({ setAppState, setUser, setMessage }) => {
             <input id="password" value={password} onChange={({ target }) => setPassword(target.value)} />
           </div>
           <div>
-            <button type="submit">Login</button>
+            <button type="submit" id="login-submit">Login</button>
           </div>
           <div>Not signed up? Create an account to save your lists and recommendations.</div>
         </form>
