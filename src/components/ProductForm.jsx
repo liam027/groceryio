@@ -27,9 +27,9 @@ const ProductForm = ({ addProduct, setMessage }) => {
   }
 
   return (
-    <div id="productForm-container">
-      <form id="productForm" onSubmit={submitProduct}>
-        <input value={newProduct} onChange={handleNewProductChange} />
+    <div id="product-form-container">
+      <form id="product-form" onSubmit={submitProduct}>
+        <input id="new-product-input" value={newProduct} onChange={handleNewProductChange} />
         <button type="submit" id="submitProductButton">Save</button>
       </form>
     </div>
