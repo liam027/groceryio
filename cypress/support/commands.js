@@ -32,3 +32,16 @@ Cypress.Commands.add('login', ({ username, password }) => {
     cy.visit('http://localhost:3000')
   })
 })
+
+Cypress.Commands.add('createProduct', ({ name, category, quantity }) => {
+  cy.request({
+    url: 'http://localhost:3001/api/products',
+    method: 'POST',
+    body: { name, category, quantity  },
+    headers: {
+      'Authorization': `bearer ${JSON.parse(localStorage.getItem('loggedGroceryIOUser')).token}`
+    }
+  })
+
+  cy.visit('http://localhost:3000')
+})
