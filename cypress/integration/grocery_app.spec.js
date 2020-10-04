@@ -38,11 +38,7 @@ describe('Grocery app', function () {
 
   describe('when logged in', function () {
     beforeEach(function () {
-      cy.request('POST', 'http://localhost:3001/api/login', { username: 'root', password: 'password' })
-        .then(response => {
-          localStorage.setItem('loggedGroceryIOUser', JSON.stringify(response.body))
-          cy.visit('http://localhost:3000')
-        })
+      cy.login({ username: 'root', password: 'password' })
     })
 
     it('can add new product', function () {
