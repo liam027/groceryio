@@ -2,3 +2,5 @@
 db.json
 /build
 /coverage
+/cypress/screenshots
+/cypress/videos
