@@ -23,7 +23,7 @@ const App = () => {
   ]
 
   const newProductFormRef = useRef()
-  const [appState, setAppState] = useState(APP_STATES.LIST)
+  const [appState, setAppState] = useState(APP_STATES.TILE)
   const [user, setUser] = useState(null)
   const [products, setProducts] = useState([])
   const [filter, setFilter] = useState('all')

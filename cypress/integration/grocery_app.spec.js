@@ -16,10 +16,19 @@ describe('Grocery app', function () {
     cy.contains('Groceryio')
   })
 
-  it('user can login', function () {
-    cy.visit('http://localhost:3000')
+  it('login fails with wrong password', function () {
     cy.contains('Login').click()
+    cy.get('#username').type('root')
+    cy.get('#password').type('wrongpassword')
+    cy.get('#login-submit').click()
 
+    cy.get('.message')
+      .should('contain', 'Wrong credentials')
+      .and('have.css', 'color', 'rgb(255, 0, 0)')
+  })
+
+  it('user can login', function () {
+    cy.contains('Login').click()
     cy.get('#username').type('root')
     cy.get('#password').type('password')
     cy.get('#login-submit').click()
@@ -29,19 +38,18 @@ describe('Grocery app', function () {
 
   describe('when logged in', function () {
     beforeEach(function () {
-      cy.visit('http://localhost:3000')
-      cy.contains('Login').click()
-
-      cy.get('#username').type('root')
-      cy.get('#password').type('password')
-      cy.get('#login-submit').click()
+      cy.request('POST', 'http://localhost:3001/api/login', { username: 'root', password: 'password' })
+        .then(response => {
+          localStorage.setItem('loggedGroceryIOUser', JSON.stringify(response.body))
+          cy.visit('http://localhost:3000')
+        })
     })
 
     it('can add new product', function () {
       cy.contains('Add Product').click()
-      cy.get('#new-product-input').type('unique product')
+      cy.get('#new-product-input').type('unique')
       cy.contains('Save').click()
-      cy.contains('UNIQUE PRODUCT')
+      cy.contains('UNIQUE')
     })
   })
 
