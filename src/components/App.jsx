@@ -5,11 +5,11 @@ import FilterBar from './FilterBar'
 import ItemTile from './ItemTile'
 import ItemList from './ItemList'
 import LoginForm from './LoginForm'
+import NavBarMenu from './NavBarMenu'
 import Notification from './Notification'
 import ProductForm from './ProductForm'
 import productService from '../services/products'
 import React, { useState, useEffect } from 'react'
-import ViewSelector from './ViewSelector'
 
 const App = () => {
   const CATEGORIES = [
@@ -116,14 +116,6 @@ const App = () => {
     )
   }
 
-  const addProductButton = () => {
-    return (
-      <Link className='add-product-container' to='/add_product'>
-        <span className='add-product-button'></span>
-      </Link>
-    )
-  }
-
   return (
     <div id='App'>
       <Switch>
@@ -136,7 +128,7 @@ const App = () => {
       </Switch>
 
       <header className='navbar'>
-        {addProductButton()}
+        <NavBarMenu setAppState={setAppState} />
         <span className='title'>Groceryio</span>
         {user === null ?
           loginButton() :
@@ -145,7 +137,6 @@ const App = () => {
       </header>
 
       <Notification message={message} />
-      <ViewSelector setAppState={setAppState} />
       <FilterBar filters={CATEGORIES} defineFilter={defineFilter} />
       {appState === APP_STATES.LIST && listView()}
       {appState === APP_STATES.TILE && tileView()}
