@@ -1,11 +1,11 @@
-#login-form-splash {
+#product-form-splash {
   display: flex;
   position: absolute;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.3);
 }
-#login-form-container {
+#product-form-container {
   display: flex;
   width: 25vw;
   height: 25vw;
@@ -13,22 +13,22 @@
   background-color: white;
   border-radius: 40px;
 }
-#login-form{
+#product-form{
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   width: 100%;
 }
-#login-form-splash .header {
+#product-form-splash .header {
   width: 100%;
   padding-top: 50px;
   text-align: center;
   font-size: 2em;
 }
-#login-form-splash .label{
+#product-form-splash .label{
   display: inline-block;
   margin-right: 40px;
 }
-#login-form-splash .close-btn{
+#product-form-splash .close-btn{
   position: absolute;
   display: flex;
   width: 50px;
@@ -36,6 +36,6 @@
   margin: 20px;
   cursor: pointer;
 }
-#login-form-splash .emph{
+#product-form-splash .emph{
   font-size: 1.5em;
 }

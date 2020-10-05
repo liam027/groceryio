@@ -34,12 +34,6 @@ a {
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
-#product-form-container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px auto;
-}
 .navbar {
   display: grid;
   grid-template-columns: 1fr 8fr 1fr;

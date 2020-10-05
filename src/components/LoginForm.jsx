@@ -38,14 +38,14 @@ const LoginForm = ({ setUser, setMessage }) => {
   }
 
   return (
-    <div id="login-form">
+    <div id="login-form-splash">
       <div id="login-form-container">
         <Link to="/">
           <div className="close-btn emph" onClick={closeForm}>
             <div>X</div>
           </div>
         </Link>
-        <form id="loginForm" onSubmit={handleLogin}>
+        <form id="login-form" onSubmit={handleLogin}>
           <div className="header">
             <div>Login</div>
           </div>
