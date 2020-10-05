@@ -31,17 +31,17 @@ const LoginForm = ({ setUser, setMessage }) => {
     }
   }
 
-  const closeModal = () => {
+  const closeForm = () => {
     setUsername('')
     setPassword('')
     history.push('/')
   }
 
   return (
-    <div id="login-modal">
+    <div id="login-form">
       <div id="login-form-container">
         <Link to="/">
-          <div className="close-btn emph" onClick={closeModal}>
+          <div className="close-btn emph" onClick={closeForm}>
             <div>X</div>
           </div>
         </Link>

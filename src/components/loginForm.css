@@ -1,4 +1,4 @@
-#login-modal {
+#login-form {
   display: flex;
   position: absolute;
   width: 100vw;
@@ -18,20 +18,20 @@
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   width: 100%;
 }
-#login-modal .label-container{
+#login-form .label-container{
 
 }
-#login-modal .header {
+#login-form .header {
   width: 100%;
   padding-top: 50px;
   text-align: center;
   font-size: 2em;
 }
-#login-modal .label{
+#login-form .label{
   display: inline-block;
   margin-right: 40px;
 }
-#login-modal .close-btn{
+#login-form .close-btn{
   position: absolute;
   display: flex;
   width: 50px;
@@ -39,6 +39,6 @@
   margin: 20px;
   cursor: pointer;
 }
-#login-modal .emph{
+#login-form .emph{
   font-size: 1.5em;
 }
