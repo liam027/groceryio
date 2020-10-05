@@ -1,12 +1,11 @@
-import APP_STATES from '../states'
 import { Link, useHistory } from 'react-router-dom'
 import loginService from '../services/login'
 import productsService from '../services/products'
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import './loginModal.css'
+import './loginForm.css'
 
-const LoginModal = ({ setUser, setMessage }) => {
+const LoginForm = ({ setUser, setMessage }) => {
   const history = useHistory()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -68,10 +67,10 @@ const LoginModal = ({ setUser, setMessage }) => {
   )
 }
 
-LoginModal.propTypes = {
+LoginForm.propTypes = {
   setAppState: PropTypes.func.isRequired,
   setUser: PropTypes.func.isRequired,
   setMessage: PropTypes.func.isRequired
 }
 
-export default LoginModal
+export default LoginForm

@@ -5,7 +5,7 @@ import FilterBar from './FilterBar'
 import Header from './Header'
 import ItemTile from './ItemTile'
 import ItemList from './ItemList'
-import LoginModal from './LoginModal'
+import LoginForm from './LoginForm'
 import Notification from './Notification'
 import ProductForm from './ProductForm'
 import productService from '../services/products'
@@ -86,10 +86,6 @@ const App = () => {
       })
   }
 
-  const loginForm = () => {
-    return <LoginModal setUser={setUser} setMessage={setMessage} setAppState={setAppState} />
-  }
-
   const logout = () => {
     setUser(null)
     productService.setToken(null)
@@ -112,7 +108,7 @@ const App = () => {
     <div id="App">
       <Switch>
         <Route path="/login">
-          <LoginModal setUser={setUser} setMessage={setMessage} setAppState={setAppState} />
+          <LoginForm setUser={setUser} setMessage={setMessage} setAppState={setAppState} />
         </Route>
       </Switch>
       <Header title={title} user={user} setAppState={setAppState} logout={logout} />
