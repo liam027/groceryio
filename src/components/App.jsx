@@ -2,7 +2,6 @@ import './App.css'
 import APP_STATES from '../states'
 import { Switch, Route, Link } from 'react-router-dom'
 import FilterBar from './FilterBar'
-import Header from './Header'
 import ItemTile from './ItemTile'
 import ItemList from './ItemList'
 import LoginForm from './LoginForm'
@@ -104,18 +103,51 @@ const App = () => {
     )
   }
 
+  const loginButton = () => {
+    return (
+      <Link className="log-button" to='/login'>
+        <span>Login</span>
+      </Link>
+    )
+  }
+
+  const logoutButton = () => {
+    return (
+      <div className="log-button" onClick={logout}>
+        <span>Logout</span>
+      </div>
+    )
+  }
+
+  const addProductButton = () => {
+    return (
+      <Link className='add-product-container' to='/add_product'>
+        <span className='add-product-button'></span>
+      </Link>
+    )
+  }
+
   return (
-    <div id="App">
+    <div id='App'>
       <Switch>
-        <Route path="/login">
+        <Route path='/login'>
           <LoginForm setUser={setUser} setMessage={setMessage} setAppState={setAppState} />
         </Route>
+        <Route path='/add_product'>
+          <ProductForm addProduct={addProduct} setMessage={setMessage} />
+        </Route>
       </Switch>
-      <Header title={title} user={user} setAppState={setAppState} logout={logout} />
+
+      <header className='navbar'>
+        {addProductButton()}
+        <span className='title'>Groceryio</span>
+        {user === null ?
+          loginButton() :
+          logoutButton()
+        }
+      </header>
+
       <Notification message={message} />
-      <Togglable buttonLabel='Add Product' ref={newProductFormRef}>
-        <ProductForm addProduct={addProduct} setMessage={setMessage} />
-      </Togglable>
       <ViewSelector setAppState={setAppState} />
       <FilterBar filters={CATEGORIES} defineFilter={defineFilter} />
       {appState === APP_STATES.LIST && listView()}
