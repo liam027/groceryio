@@ -27,7 +27,7 @@ const ProductForm = ({ addProduct, setMessage }) => {
     event.preventDefault()
     const productObj = {
       name: name,
-      category: 'produce',
+      category: category,
       quantity: 0
     }
     addProduct(productObj)
