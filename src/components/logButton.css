@@ -1,0 +1,14 @@
+.log-button-container{
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  width: 100%;
+}
+.log-button {
+  margin: 0px 40px;
+  padding: 10px 20px;
+  color: white;
+  background-color: #3568ff;
+  border-radius: 10px;
+  cursor: pointer;
+}

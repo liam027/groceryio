@@ -1,10 +1,11 @@
 import './App.css'
 import APP_STATES from '../states'
-import { Switch, Route, Link } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import FilterBar from './FilterBar'
 import ItemTile from './ItemTile'
 import ItemList from './ItemList'
 import LoginForm from './LoginForm'
+import LogButton from './LogButton'
 import NavBarMenu from './NavBarMenu'
 import Notification from './Notification'
 import ProductForm from './ProductForm'
@@ -82,7 +83,7 @@ const App = () => {
       })
   }
 
-  const logout = () => {
+  const logOut = () => {
     setUser(null)
     productService.setToken(null)
     window.localStorage.removeItem('loggedGroceryIOUser')
@@ -100,22 +101,6 @@ const App = () => {
     )
   }
 
-  const loginButton = () => {
-    return (
-      <Link className="log-button" to='/login'>
-        <span>Login</span>
-      </Link>
-    )
-  }
-
-  const logoutButton = () => {
-    return (
-      <div className="log-button" onClick={logout}>
-        <span>Logout</span>
-      </div>
-    )
-  }
-
   return (
     <div id='App'>
       <Switch>
@@ -130,10 +115,7 @@ const App = () => {
       <header className='navbar'>
         <NavBarMenu setAppState={setAppState} />
         <span className='title'>Groceryio</span>
-        {user === null ?
-          loginButton() :
-          logoutButton()
-        }
+        <LogButton user={user} logOut={logOut} />
       </header>
 
       <Notification message={message} />
