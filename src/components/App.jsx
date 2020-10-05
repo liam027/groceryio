@@ -8,11 +8,10 @@ import LoginForm from './LoginForm'
 import Notification from './Notification'
 import ProductForm from './ProductForm'
 import productService from '../services/products'
-import React, { useState, useEffect, useRef } from 'react'
-import Togglable from './Toggleable'
+import React, { useState, useEffect } from 'react'
 import ViewSelector from './ViewSelector'
+
 const App = () => {
-  const title = 'Groceryio'
   const CATEGORIES = [
     'all',
     'produce',
@@ -21,7 +20,6 @@ const App = () => {
     'meat',
   ]
 
-  const newProductFormRef = useRef()
   const [appState, setAppState] = useState(APP_STATES.TILE)
   const [user, setUser] = useState(null)
   const [products, setProducts] = useState([])
@@ -65,7 +63,6 @@ const App = () => {
   }
 
   const addProduct = (productObj) => {
-    newProductFormRef.current.toggleVisibility()
     productService
       .create(productObj)
       .then(newProduct => {
