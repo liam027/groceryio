@@ -16,6 +16,9 @@ html, body {
   height: 100%;
   background-color: rgb(212, 217, 219)
 }
+a {
+  text-decoration: none;
+}
 #root {
   height: 100%;
 }

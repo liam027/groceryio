@@ -1,7 +1,7 @@
 import React from 'react'
-import APP_STATES from '../states'
+import { Link } from 'react-router-dom'
 
-const Header = ({ title, setAppState, user, logout }) => {
+const Header = ({ title, user, logout }) => {
 
   const headerStyle = {
     display: 'grid',
@@ -20,7 +20,8 @@ const Header = ({ title, setAppState, user, logout }) => {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'middle',
-    padding: '10px 40px',
+    padding: '10px 20px',
+    margin: '0px 20px',
     color: 'white',
     backgroundColor: '#3568ff',
     borderRadius: '10px',
@@ -29,9 +30,9 @@ const Header = ({ title, setAppState, user, logout }) => {
 
   const loginButton = () => {
     return (
-      <div style={loginStyle} onClick={() => setAppState(APP_STATES.LOGIN)}>
+      <Link style={loginStyle} to='/login'>
         <span>Login</span>
-      </div>
+      </Link>
     )
   }
 

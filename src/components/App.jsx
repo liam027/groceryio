@@ -1,5 +1,6 @@
 import './App.css'
 import APP_STATES from '../states'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import FilterBar from './FilterBar'
 import Header from './Header'
 import ItemTile from './ItemTile'
@@ -11,7 +12,6 @@ import productService from '../services/products'
 import React, { useState, useEffect, useRef } from 'react'
 import Togglable from './Toggleable'
 import ViewSelector from './ViewSelector'
-
 const App = () => {
   const title = 'Groceryio'
   const CATEGORIES = [
@@ -109,18 +109,24 @@ const App = () => {
   }
 
   return (
-    <div id="App">
-      { appState === APP_STATES.LOGIN && loginForm()}
-      <Header title={title} user={user} setAppState={setAppState} logout={logout} />
-      <Notification message={message} />
-      <Togglable buttonLabel='Add Product' ref={newProductFormRef}>
-        <ProductForm addProduct={addProduct} setMessage={setMessage} />
-      </Togglable>
-      <ViewSelector setAppState={setAppState} />
-      <FilterBar filters={CATEGORIES} defineFilter={defineFilter} />
-      { appState === APP_STATES.LIST && listView()}
-      { appState === APP_STATES.TILE && tileView()}
-    </div>
+    <Router>
+      <div id="App">
+        <Switch>
+          <Route path="/login">
+            <LoginModal setUser={setUser} setMessage={setMessage} setAppState={setAppState} />
+          </Route>
+        </Switch>
+        <Header title={title} user={user} setAppState={setAppState} logout={logout} />
+        <Notification message={message} />
+        <Togglable buttonLabel='Add Product' ref={newProductFormRef}>
+          <ProductForm addProduct={addProduct} setMessage={setMessage} />
+        </Togglable>
+        <ViewSelector setAppState={setAppState} />
+        <FilterBar filters={CATEGORIES} defineFilter={defineFilter} />
+        {appState === APP_STATES.LIST && listView()}
+        {appState === APP_STATES.TILE && tileView()}
+      </div>
+    </Router>
   )
 }
 

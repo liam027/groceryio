@@ -1,4 +1,5 @@
 import APP_STATES from '../states'
+import { Link, useHistory } from 'react-router-dom'
 import loginService from '../services/login'
 import productsService from '../services/products'
 import React, { useState } from 'react'
@@ -6,6 +7,7 @@ import PropTypes from 'prop-types'
 import './loginModal.css'
 
 const LoginModal = ({ setAppState, setUser, setMessage }) => {
+  const history = useHistory()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
@@ -33,15 +35,17 @@ const LoginModal = ({ setAppState, setUser, setMessage }) => {
   const closeModal = () => {
     setUsername('')
     setPassword('')
-    setAppState(APP_STATES.TILE)
+    history.push('/')
   }
 
   return (
     <div id="login-modal">
       <div id="login-form-container">
-        <div className="close-btn emph" onClick={closeModal}>
-          <div>X</div>
-        </div>
+        <Link to="/">
+          <div className="close-btn emph" onClick={closeModal}>
+            <div>X</div>
+          </div>
+        </Link>
         <form id="loginForm" onSubmit={handleLogin}>
           <div className="header">
             <div>Login</div>
