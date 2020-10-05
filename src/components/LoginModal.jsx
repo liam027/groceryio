@@ -6,7 +6,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import './loginModal.css'
 
-const LoginModal = ({ setAppState, setUser, setMessage }) => {
+const LoginModal = ({ setUser, setMessage }) => {
   const history = useHistory()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -22,7 +22,7 @@ const LoginModal = ({ setAppState, setUser, setMessage }) => {
       setUser(user)
       setUsername('')
       setPassword('')
-      setAppState(APP_STATES.TILE)
+      history.push('/')
     }
     catch (exception) {
       setMessage('Wrong credentials')
