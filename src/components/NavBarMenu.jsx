@@ -1,5 +1,5 @@
 import APP_STATES from '../states'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import React from 'react'
 import PropTypes from 'prop-types'
 import './navBarMenu.css'
