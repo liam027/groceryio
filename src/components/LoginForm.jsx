@@ -4,8 +4,11 @@ import productsService from '../services/products'
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import './loginForm.css'
+import { useSelector, useDispatch } from 'react-redux'
+import { setUser } from '../reducers/userReducer'
 
-const LoginForm = ({ setUser, setMessage }) => {
+const LoginForm = ({ setMessage }) => {
+  const dispatch = useDispatch()
   const history = useHistory()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -18,7 +21,7 @@ const LoginForm = ({ setUser, setMessage }) => {
 
       window.localStorage.setItem('loggedGroceryIOUser', JSON.stringify(user))
       productsService.setToken(user.token)
-      setUser(user)
+      dispatch(setUser(user))
       setUsername('')
       setPassword('')
       history.push('/')
@@ -69,7 +72,6 @@ const LoginForm = ({ setUser, setMessage }) => {
 
 LoginForm.propTypes = {
   setAppState: PropTypes.func.isRequired,
-  setUser: PropTypes.func.isRequired,
   setMessage: PropTypes.func.isRequired
 }
 

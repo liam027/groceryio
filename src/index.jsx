@@ -6,10 +6,12 @@ import productReducer from './reducers/productReducer'
 import { Provider } from 'react-redux'
 import ReactDOM from 'react-dom'
 import React from 'react'
+import userReducer from './reducers/userReducer'
 
 const reducer = combineReducers({
   products: productReducer,
-  filter: filterReducer
+  filter: filterReducer,
+  user: userReducer
 })
 
 const store = createStore(reducer)

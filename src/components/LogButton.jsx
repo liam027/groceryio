@@ -1,10 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useHistory } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import './logButton.css'
 
-const LogButton = ({ user, logOut }) => {
+const LogButton = ({ logOut }) => {
   const history = useHistory()
+  const currentUser = useSelector(state => state.user)
 
   const login = () => {
     history.push('/login')
@@ -28,7 +30,7 @@ const LogButton = ({ user, logOut }) => {
 
   return (
     <>
-      { user === null ?
+      { currentUser === null ?
         loginButton() :
         logoutButton()
       }

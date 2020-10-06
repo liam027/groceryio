@@ -14,6 +14,7 @@ import ProductForm from './ProductForm'
 import productService from '../services/products'
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { setUser, clearUser } from '../reducers/userReducer'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -29,19 +30,18 @@ const App = () => {
   ]
 
   const [appState, setAppState] = useState(APP_STATES.TILE)
-  const [user, setUser] = useState(null)
   const [message, setMessage] = useState('Enter a new product!')
 
   const getLoggedUser = () => {
     const loggedUser = window.localStorage.getItem('loggedGroceryIOUser')
     if (loggedUser) {
       const user = JSON.parse(loggedUser)
-      setUser(user)
+      dispatch(setUser(user))
       productService.setToken(user.token)
     }
   }
 
-  useEffect(getLoggedUser, []) // [] specifies the effect to only run after first render
+  useEffect(getLoggedUser, []) // [] = only run after first render
 
   const getProductsHook = () => {
     productService
@@ -52,7 +52,7 @@ const App = () => {
       })
   }
 
-  useEffect(getProductsHook, []) // [] specifies the effect to only run after first render
+  useEffect(getProductsHook, []) // [] = only run after first render
 
   const productsToDisplay = () => {
     if (filter === 'all') {
@@ -88,7 +88,7 @@ const App = () => {
   }
 
   const logOut = () => {
-    setUser(null)
+    dispatch(clearUser())
     productService.setToken(null)
     window.localStorage.removeItem('loggedGroceryIOUser')
   }
@@ -109,7 +109,7 @@ const App = () => {
     <div id='App'>
       <Switch>
         <Route path='/login'>
-          <LoginForm setUser={setUser} setMessage={setMessage} setAppState={setAppState} />
+          <LoginForm setMessage={setMessage} setAppState={setAppState} />
         </Route>
         <Route path='/add_product'>
           <ProductForm addProduct={addProduct} setMessage={setMessage} />
@@ -119,7 +119,7 @@ const App = () => {
       <header className='navbar'>
         <NavBarMenu setAppState={setAppState} />
         <span className='title'>Groceryio</span>
-        <LogButton user={user} logOut={logOut} />
+        <LogButton logOut={logOut} />
       </header>
 
       <Notification message={message} />
