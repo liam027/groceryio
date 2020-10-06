@@ -9,15 +9,10 @@ const productReducer = (state = [], action) => {
   }
 }
 
-export const createProduct = (name, category, quantity) => {
+export const createProduct = ( data ) => {
   return {
     type: 'NEW_PRODUCT',
-    data: {
-      name,
-      category,
-      quantity: quantity
-    }
-  }
+    data: data
 }
 
 export const setProducts = (products) => {
