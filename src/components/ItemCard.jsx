@@ -5,7 +5,6 @@ import './itemCard.css'
 const ItemCard = ({ product, deleteProduct }) => {
   const MAX_QUANTITY = 99
   const [quantity, setQuantity] = useState(product.quantity)
-  const { name } = product
 
   const increaseByOne = () => {
     if (quantity < MAX_QUANTITY) {
@@ -20,7 +19,7 @@ const ItemCard = ({ product, deleteProduct }) => {
 
   return (
     <div className="itemCard">
-      <div className="name" onClick={increaseByOne} >{name.toUpperCase()}</div>
+      <div className="name" onClick={increaseByOne} >{product.name.toUpperCase()}</div>
       <div className="controls">
         <div className="delete noselect" onClick={() => deleteProduct(product.id)}>X</div>
         <div className="quantity noselect" onClick={decreaseByOne}>{quantity}</div>
