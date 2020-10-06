@@ -1,5 +1,4 @@
 import './App.css'
-import APP_STATES from '../states'
 import { createProduct, setProducts } from '../reducers/productReducer'
 import { Switch, Route } from 'react-router-dom'
 import FilterBar from './FilterBar'
@@ -21,6 +20,8 @@ const App = () => {
   const dispatch = useDispatch()
   const products = useSelector(state => state.products)
   const filter = useSelector(state => state.filter)
+  const view = useSelector(state => state.view)
+  console.log(view);
 
   const CATEGORIES = [
     'all',
@@ -29,8 +30,6 @@ const App = () => {
     'frozen',
     'meat',
   ]
-
-  const [appState, setAppState] = useState(APP_STATES.TILE)
 
   const getLoggedUser = () => {
     const loggedUser = window.localStorage.getItem('loggedGroceryIOUser')
@@ -109,7 +108,7 @@ const App = () => {
     <div id='App'>
       <Switch>
         <Route path='/login'>
-          <LoginForm setAppState={setAppState} />
+          <LoginForm  />
         </Route>
         <Route path='/add_product'>
           <ProductForm addProduct={addProduct} />
@@ -117,15 +116,15 @@ const App = () => {
       </Switch>
 
       <header className='navbar'>
-        <NavBarMenu setAppState={setAppState} />
+        <NavBarMenu />
         <span className='title'>Groceryio</span>
         <LogButton logOut={logOut} />
       </header>
 
       <Notification />
       <FilterBar filters={CATEGORIES} defineFilter={defineFilter} />
-      {appState === APP_STATES.LIST && listView()}
-      {appState === APP_STATES.TILE && tileView()}
+      {view === 'list' && listView()}
+      {view === 'tile' && tileView()}
     </div>
   )
 }
