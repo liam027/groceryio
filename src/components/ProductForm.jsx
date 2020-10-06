@@ -1,10 +1,13 @@
 import { Link, useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { setMessage } from '../reducers/messageReducer'
 import './productForm.css'
 
-const ProductForm = ({ addProduct, setMessage }) => {
+const ProductForm = ({ addProduct }) => {
   const history = useHistory()
+  const dispatch = useDispatch()
   const [name, setName] = useState('')
   const [category, setCategory] = useState('')
   const MAX_PRODUCT_NAME_LENGTH = 28
@@ -12,10 +15,10 @@ const ProductForm = ({ addProduct, setMessage }) => {
   const handleNameChange = (event) => {
     if (event.target.value.length < MAX_PRODUCT_NAME_LENGTH) {
       setName(event.target.value)
-      setMessage('')
+      dispatch(setMessage(''))
     }
     else {
-      setMessage(`The new product name you provided is too long. Please make it less than ${MAX_PRODUCT_NAME_LENGTH} characters.`)
+      dispatch(setMessage(`The new product name you provided is too long. Please make it less than ${MAX_PRODUCT_NAME_LENGTH} characters.`))
     }
   }
 
@@ -58,8 +61,8 @@ const ProductForm = ({ addProduct, setMessage }) => {
           </div>
           <div className="label-container emph">
             <label className="label">Category</label>
-            <select value={category} onChange={handleCategoryChange}>
-              <option selected value="produce">Produce</option>
+            <select defaultValue='produce' onChange={handleCategoryChange}>
+              <option value="produce">Produce</option>
               <option value="dairy">Dairy</option>
               <option value="frozen">Frozen</option>
               <option value="meat">Meat</option>

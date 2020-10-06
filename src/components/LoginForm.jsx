@@ -3,11 +3,12 @@ import loginService from '../services/login'
 import productsService from '../services/products'
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import './loginForm.css'
-import { useSelector, useDispatch } from 'react-redux'
 import { setUser } from '../reducers/userReducer'
+import { setMessage } from '../reducers/messageReducer'
+import { useDispatch } from 'react-redux'
+import './loginForm.css'
 
-const LoginForm = ({ setMessage }) => {
+const LoginForm = () => {
   const dispatch = useDispatch()
   const history = useHistory()
   const [username, setUsername] = useState('')
@@ -27,9 +28,9 @@ const LoginForm = ({ setMessage }) => {
       history.push('/')
     }
     catch (exception) {
-      setMessage('Wrong credentials')
+      dispatch(setMessage('Wrong credentials'))
       setTimeout(() => {
-        setMessage(null)
+        dispatch(setMessage(null))
       }, 5000)
     }
   }
@@ -71,8 +72,6 @@ const LoginForm = ({ setMessage }) => {
 }
 
 LoginForm.propTypes = {
-  setAppState: PropTypes.func.isRequired,
-  setMessage: PropTypes.func.isRequired
 }
 
 export default LoginForm

@@ -5,10 +5,9 @@ import ProductForm from './ProductForm'
 
 test('<ProductForm /> updates parent state and calls onSubmit', () => {
   const addProduct = jest.fn()
-  const setMessage = jest.fn()
 
   const component = render(
-    <ProductForm addProduct={addProduct} setMessage={setMessage} />
+    <ProductForm addProduct={addProduct} />
   )
 
   const input = component.container.querySelector('input')

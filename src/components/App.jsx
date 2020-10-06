@@ -15,6 +15,7 @@ import productService from '../services/products'
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setUser, clearUser } from '../reducers/userReducer'
+import { setMessage } from '../reducers/messageReducer'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -30,7 +31,6 @@ const App = () => {
   ]
 
   const [appState, setAppState] = useState(APP_STATES.TILE)
-  const [message, setMessage] = useState('Enter a new product!')
 
   const getLoggedUser = () => {
     const loggedUser = window.localStorage.getItem('loggedGroceryIOUser')
@@ -48,7 +48,7 @@ const App = () => {
       .getAll()
       .then(allProducts => {
         dispatch(setProducts(allProducts))
-        setMessage('Products loaded!')
+        dispatch(setMessage('Products loaded!'))
       })
   }
 
@@ -83,7 +83,7 @@ const App = () => {
         dispatch(setProducts(products.filter(product => product.id !== id)))
       })
       .catch(() => {
-        setMessage(`ERROR: The ID '${id}' is not a current or valid product ID.`)
+        dispatch(setMessage(`ERROR: The ID '${id}' is not a current or valid product ID.`))
       })
   }
 
@@ -109,10 +109,10 @@ const App = () => {
     <div id='App'>
       <Switch>
         <Route path='/login'>
-          <LoginForm setMessage={setMessage} setAppState={setAppState} />
+          <LoginForm setAppState={setAppState} />
         </Route>
         <Route path='/add_product'>
-          <ProductForm addProduct={addProduct} setMessage={setMessage} />
+          <ProductForm addProduct={addProduct} />
         </Route>
       </Switch>
 
@@ -122,7 +122,7 @@ const App = () => {
         <LogButton logOut={logOut} />
       </header>
 
-      <Notification message={message} />
+      <Notification />
       <FilterBar filters={CATEGORIES} defineFilter={defineFilter} />
       {appState === APP_STATES.LIST && listView()}
       {appState === APP_STATES.TILE && tileView()}
