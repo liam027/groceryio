@@ -1,7 +1,7 @@
-import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
+import { fireEvent, render } from '@testing-library/react'
 import ProductForm from './ProductForm'
+import React from 'react'
 
 test('<ProductForm /> updates parent state and calls onSubmit', () => {
   const addProduct = jest.fn()

@@ -1,9 +1,9 @@
-import { Link, useHistory } from 'react-router-dom'
-import PropTypes from 'prop-types'
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { setMessage } from '../reducers/messageReducer'
 import './productForm.css'
+import { Link, useHistory } from 'react-router-dom'
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import { setMessage } from '../reducers/messageReducer'
+import { useDispatch } from 'react-redux'
 
 const ProductForm = ({ addProduct }) => {
   const history = useHistory()

@@ -1,6 +1,6 @@
+import './itemCard.css'
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import './itemCard.css'
 
 const ItemCard = ({ product, deleteProduct }) => {
   const MAX_QUANTITY = 99

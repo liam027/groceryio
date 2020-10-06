@@ -1,6 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
 import './itemList.css'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 const ItemList = ({ products, deleteProduct }) => {
 

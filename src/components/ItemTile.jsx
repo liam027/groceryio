@@ -1,7 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import ItemCard from './ItemCard'
 import './itemTile.css'
+import ItemCard from './ItemCard'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 const ItemTile = ({ products, deleteProduct }) => {
 

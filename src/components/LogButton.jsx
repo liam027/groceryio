@@ -1,8 +1,8 @@
-import React from 'react'
+import './logButton.css'
 import PropTypes from 'prop-types'
+import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import './logButton.css'
 
 const LogButton = ({ logOut }) => {
   const history = useHistory()

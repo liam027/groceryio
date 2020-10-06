@@ -1,5 +1,5 @@
-import productReducer from './productReducer'
 import deepFreeze from 'deep-freeze'
+import productReducer from './productReducer'
 
 describe('productReducer', () => {
   test('returns new state with action NEW_PRODUCT', () => {

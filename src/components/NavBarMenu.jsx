@@ -1,9 +1,9 @@
-import { useHistory } from 'react-router-dom'
-import React from 'react'
-import PropTypes from 'prop-types'
-import { useDispatch } from 'react-redux'
-import { setView } from '../reducers/viewReducer'
 import './navBarMenu.css'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { setView } from '../reducers/viewReducer'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 const NavBarMenu = () => {
   const history = useHistory()

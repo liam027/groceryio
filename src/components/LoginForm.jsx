@@ -1,11 +1,11 @@
+import './loginForm.css'
 import { Link, useHistory } from 'react-router-dom'
+import React, { useState } from 'react'
 import loginService from '../services/login'
 import productsService from '../services/products'
-import React, { useState } from 'react'
-import { setUser } from '../reducers/userReducer'
 import { setMessage } from '../reducers/messageReducer'
+import { setUser } from '../reducers/userReducer'
 import { useDispatch } from 'react-redux'
-import './loginForm.css'
 
 const LoginForm = () => {
   const dispatch = useDispatch()

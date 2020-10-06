@@ -1,8 +1,7 @@
-import ItemCard from './ItemCard'
-// import prettyDOM from '@testing-library/dom'
-import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
+import { fireEvent, render } from '@testing-library/react'
+import ItemCard from './ItemCard'
+import React from 'react'
 
 describe('<ItemCard />', () => {
   let product, mockHandler, component

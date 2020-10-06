@@ -1,5 +1,5 @@
-import React from 'react'
 import './filterBar.css'
+import React from 'react'
 
 const FilterBar = ({ filters, defineFilter }) => {
   return (

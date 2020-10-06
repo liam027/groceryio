@@ -1,19 +1,19 @@
 import './App.css'
+import React, { useEffect } from 'react'
+import { Route, Switch } from 'react-router-dom'
+import { clearUser, setUser } from '../reducers/userReducer'
 import { createProduct, setProducts } from '../reducers/productReducer'
-import { Switch, Route } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import FilterBar from './FilterBar'
-import { setFilter } from '../reducers/filterReducer'
-import ItemTile from './ItemTile'
 import ItemList from './ItemList'
-import LoginForm from './LoginForm'
+import ItemTile from './ItemTile'
 import LogButton from './LogButton'
+import LoginForm from './LoginForm'
 import NavBarMenu from './NavBarMenu'
 import Notification from './Notification'
 import ProductForm from './ProductForm'
 import productService from '../services/products'
-import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { setUser, clearUser } from '../reducers/userReducer'
+import { setFilter } from '../reducers/filterReducer'
 import { setMessage } from '../reducers/messageReducer'
 
 const App = () => {
@@ -21,7 +21,7 @@ const App = () => {
   const products = useSelector(state => state.products)
   const filter = useSelector(state => state.filter)
   const view = useSelector(state => state.view)
-  console.log(view);
+  console.log(view)
 
   const CATEGORIES = [
     'all',
