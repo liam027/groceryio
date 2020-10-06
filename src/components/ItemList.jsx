@@ -10,7 +10,7 @@ const ItemList = ({ products, deleteProduct }) => {
         <div key={product.id} className="list-item">
           <span>{product.name}</span>
           <span>{product.quantity}</span>
-          <span>X</span>
+          <span onClick={deleteProduct}>X</span>
         </div>
       ))}
     </>
