@@ -2,7 +2,6 @@ import { Link, useHistory } from 'react-router-dom'
 import loginService from '../services/login'
 import productsService from '../services/products'
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
 import { setUser } from '../reducers/userReducer'
 import { setMessage } from '../reducers/messageReducer'
 import { useDispatch } from 'react-redux'
@@ -69,9 +68,6 @@ const LoginForm = () => {
       </div>
     </div>
   )
-}
-
-LoginForm.propTypes = {
 }
 
 export default LoginForm
