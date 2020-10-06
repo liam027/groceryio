@@ -1,7 +1,9 @@
 import './App.css'
 import APP_STATES from '../states'
+import { createProduct, setProducts } from '../reducers/productReducer'
 import { Switch, Route } from 'react-router-dom'
 import FilterBar from './FilterBar'
+import { setFilter } from '../reducers/filterReducer'
 import ItemTile from './ItemTile'
 import ItemList from './ItemList'
 import LoginForm from './LoginForm'
@@ -11,8 +13,13 @@ import Notification from './Notification'
 import ProductForm from './ProductForm'
 import productService from '../services/products'
 import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
 const App = () => {
+  const dispatch = useDispatch()
+  const products = useSelector(state => state.products)
+  const filter = useSelector(state => state.filter)
+
   const CATEGORIES = [
     'all',
     'produce',
@@ -23,8 +30,6 @@ const App = () => {
 
   const [appState, setAppState] = useState(APP_STATES.TILE)
   const [user, setUser] = useState(null)
-  const [products, setProducts] = useState([])
-  const [filter, setFilter] = useState('all')
   const [message, setMessage] = useState('Enter a new product!')
 
   const getLoggedUser = () => {
@@ -42,7 +47,7 @@ const App = () => {
     productService
       .getAll()
       .then(allProducts => {
-        setProducts(allProducts)
+        dispatch(setProducts(allProducts))
         setMessage('Products loaded!')
       })
   }
@@ -59,15 +64,14 @@ const App = () => {
   }
 
   const defineFilter = (category) => {
-    setFilter(category)
-    console.log(category)
+    dispatch(setFilter(category))
   }
 
   const addProduct = (productObj) => {
     productService
       .create(productObj)
       .then(newProduct => {
-        setProducts(products.concat(newProduct))
+        dispatch(createProduct(newProduct))
       })
   }
 
@@ -76,7 +80,7 @@ const App = () => {
       .deleteProduct(id)
       .then(response => {
         console.log('Product deleted. ID: ', response)
-        setProducts(products.filter(product => product.id !== id))
+        dispatch(setProducts(products.filter(product => product.id !== id)))
       })
       .catch(() => {
         setMessage(`ERROR: The ID '${id}' is not a current or valid product ID.`)
