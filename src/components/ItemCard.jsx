@@ -1,8 +1,11 @@
 import './itemCard.css'
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { deleteProduct } from '../reducers/productReducer'
+import { useDispatch } from 'react-redux'
 
-const ItemCard = ({ product, deleteProduct }) => {
+const ItemCard = ({ product }) => {
+  const dispatch = useDispatch()
   const MAX_QUANTITY = 99
   const [quantity, setQuantity] = useState(product.quantity)
 
@@ -21,7 +24,7 @@ const ItemCard = ({ product, deleteProduct }) => {
     <div className="itemCard">
       <div className="name" onClick={increaseByOne} >{product.name.toUpperCase()}</div>
       <div className="controls">
-        <div className="delete noselect" onClick={() => deleteProduct(product.id)}>X</div>
+        <div className="delete noselect" onClick={() => dispatch(deleteProduct(product.id))}>X</div>
         <div className="quantity noselect" onClick={decreaseByOne}>{quantity}</div>
       </div>
     </div>

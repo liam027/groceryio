@@ -3,12 +3,12 @@ import ItemCard from './ItemCard'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-const ItemTile = ({ products, deleteProduct }) => {
+const ItemTile = ({ products }) => {
 
   const populateProductCards = (prods) => (
     <>
       {prods.map((product) => (
-        <ItemCard key={product.id} product={product} deleteProduct={deleteProduct} />
+        <ItemCard key={product.id} product={product}/>
       ))}
     </>
   )

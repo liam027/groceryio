@@ -2,10 +2,11 @@ import './productForm.css'
 import { Link, useHistory } from 'react-router-dom'
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { createProduct } from '../reducers/productReducer'
 import { setMessage } from '../reducers/messageReducer'
 import { useDispatch } from 'react-redux'
 
-const ProductForm = ({ addProduct }) => {
+const ProductForm = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const [name, setName] = useState('')
@@ -33,9 +34,9 @@ const ProductForm = ({ addProduct }) => {
       category: category,
       quantity: 0
     }
-    addProduct(productObj)
     setName('')
     history.push('/')
+    dispatch(createProduct(productObj))
   }
 
   const closeForm = () => {

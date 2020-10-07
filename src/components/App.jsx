@@ -2,7 +2,7 @@ import './App.css'
 import React, { useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { clearUser, setUser } from '../reducers/userReducer'
-import { createProduct, setProducts } from '../reducers/productReducer'
+import { initProducts, setProducts } from '../reducers/productReducer'
 import { useDispatch, useSelector } from 'react-redux'
 import FilterBar from './FilterBar'
 import ItemList from './ItemList'
@@ -43,12 +43,7 @@ const App = () => {
   useEffect(getLoggedUser, []) // [] = only run after first render
 
   const getProductsHook = () => {
-    productService
-      .getAll()
-      .then(allProducts => {
-        dispatch(setProducts(allProducts))
-        dispatch(setMessage('Products loaded!'))
-      })
+    dispatch(initProducts())
   }
 
   useEffect(getProductsHook, []) // [] = only run after first render
@@ -66,26 +61,6 @@ const App = () => {
     dispatch(setFilter(category))
   }
 
-  const addProduct = (productObj) => {
-    productService
-      .create(productObj)
-      .then(newProduct => {
-        dispatch(createProduct(newProduct))
-      })
-  }
-
-  const deleteProduct = (id) => {
-    productService
-      .deleteProduct(id)
-      .then(response => {
-        console.log('Product deleted. ID: ', response)
-        dispatch(setProducts(products.filter(product => product.id !== id)))
-      })
-      .catch(() => {
-        dispatch(setMessage(`ERROR: The ID '${id}' is not a current or valid product ID.`))
-      })
-  }
-
   const logOut = () => {
     dispatch(clearUser())
     productService.setToken(null)
@@ -94,13 +69,13 @@ const App = () => {
 
   const tileView = () => {
     return (
-      <ItemTile products={productsToDisplay()} deleteProduct={deleteProduct} />
+      <ItemTile products={productsToDisplay()} />
     )
   }
 
   const listView = () => {
     return (
-      <ItemList products={productsToDisplay()} deleteProduct={deleteProduct} />
+      <ItemList products={productsToDisplay()} />
     )
   }
 
@@ -111,7 +86,7 @@ const App = () => {
           <LoginForm  />
         </Route>
         <Route path='/add_product'>
-          <ProductForm addProduct={addProduct} />
+          <ProductForm />
         </Route>
       </Switch>
 
