@@ -53,7 +53,7 @@ const ProductForm = () => {
 
   const radioButton = (name) => {
     return (
-      <div className="radio">
+      <div className="radio" key={name}>
         <label>
           <input
             type="radio"
