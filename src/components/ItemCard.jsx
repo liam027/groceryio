@@ -2,12 +2,12 @@ import './itemCard.css'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { deleteProduct } from '../reducers/productReducer'
-import useCounter from '../hooks/useCounter'
 import { useDispatch } from 'react-redux'
+import useProductCounter from '../hooks/useProductCounter'
 
 const ItemCard = ({ product }) => {
   const dispatch = useDispatch()
-  const counter = useCounter(product.quantity)
+  const counter = useProductCounter(product)
 
   return (
     <div className="itemCard">

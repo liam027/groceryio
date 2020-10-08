@@ -9,10 +9,11 @@ const productReducer = (state = [], action) => {
   case 'SET_PRODUCTS':
     return action.data
   case 'UPDATE_PRODUCT':
+    console.log(state.map((product) => {
+      return product.id === action.data.id ? action.data : product
+    }))
     return state.map((product) => {
-      if(product.id !== action.data.id){
-        product = action.data
-      }
+      return product.id === action.data.id ? action.data : product
     })
   default:
     return state
@@ -61,7 +62,7 @@ export const updateProduct = (id, updatedProduct) => {
     const savedProduct = await productService.update(id, updatedProduct)
     dispatch({
       type: 'UPDATE_PRODUCT',
-      data: savedProduct
+      data: updatedProduct
     })
   }
 }
