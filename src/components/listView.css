@@ -1,10 +1,10 @@
-#itemList{
+#listView{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   width: 90vw;
   margin: 20px auto;
 }
-#itemList .list-item{
+#listView .list-item{
   padding: 5px 0px;
   margin: 5px 5px;
   background-color: rgb(255, 255, 255);

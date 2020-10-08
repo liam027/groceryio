@@ -4,13 +4,13 @@ import { Route, Switch } from 'react-router-dom'
 import { clearUser, setUser } from '../reducers/userReducer'
 import { useDispatch, useSelector } from 'react-redux'
 import FilterBar from './FilterBar'
-import ItemList from './ItemList'
-import ItemTile from './ItemTile'
+import ListView from './ListView'
 import LogButton from './LogButton'
 import LoginForm from './LoginForm'
 import NavBarMenu from './NavBarMenu'
 import Notification from './Notification'
 import ProductForm from './ProductForm'
+import TileView from './TileView'
 import { initProducts } from '../reducers/productReducer'
 import productService from '../services/products'
 import { setFilter } from '../reducers/filterReducer'
@@ -68,13 +68,13 @@ const App = () => {
 
   const tileView = () => {
     return (
-      <ItemTile products={productsToDisplay()} />
+      <TileView products={productsToDisplay()} />
     )
   }
 
   const listView = () => {
     return (
-      <ItemList products={productsToDisplay()} />
+      <ListView products={productsToDisplay()} />
     )
   }
 

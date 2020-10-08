@@ -1,10 +1,10 @@
-import './itemList.css'
+import './listView.css'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { deleteProduct } from '../reducers/productReducer'
 import { useDispatch } from 'react-redux'
 
-const ItemList = ({ products }) => {
+const ListView = ({ products }) => {
   const dispatch = useDispatch()
 
   const populateProductList = (prods) => (
@@ -20,14 +20,14 @@ const ItemList = ({ products }) => {
   )
 
   return (
-    <div id="itemList">
+    <div id="listView">
       { populateProductList(products) }
     </div>
   )
 }
 
-ItemList.propTypes = {
+ListView.propTypes = {
   products: PropTypes.array.isRequired,
 }
 
-export default ItemList
+export default ListView

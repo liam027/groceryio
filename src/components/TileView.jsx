@@ -1,9 +1,9 @@
-import './itemTile.css'
+import './tileView.css'
 import ItemCard from './ItemCard'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-const ItemTile = ({ products }) => {
+const TileView = ({ products }) => {
 
   const populateProductCards = (prods) => (
     <>
@@ -14,14 +14,14 @@ const ItemTile = ({ products }) => {
   )
 
   return (
-    <div id="itemTile">
+    <div id="tileView">
       { populateProductCards(products) }
     </div>
   )
 }
 
-ItemTile.propTypes = {
+TileView.propTypes = {
   products: PropTypes.array.isRequired,
 }
 
-export default ItemTile
+export default TileView
