@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
-const useCounter = (product) => {
+const useCounter = (initialCount) => {
   const MAX_COUNT = 99
-  const [count, setCount] = useState(product.quantity)
+  const [count, setCount] = useState(initialCount)
 
   const inc = () => {
     if (count < MAX_COUNT) {
