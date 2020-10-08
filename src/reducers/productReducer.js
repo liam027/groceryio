@@ -8,6 +8,12 @@ const productReducer = (state = [], action) => {
     return state.filter((product) => product.id !== action.data)
   case 'SET_PRODUCTS':
     return action.data
+  case 'UPDATE_PRODUCT':
+    return state.map((product) => {
+      if(product.id !== action.data.id){
+        product = action.data
+      }
+    })
   default:
     return state
   }
@@ -46,6 +52,16 @@ export const deleteProduct = (id) => {
     dispatch({
       type: 'DELETE_PRODUCT',
       data: deletedProduct
+    })
+  }
+}
+
+export const updateProduct = (id, updatedProduct) => {
+  return async dispatch => {
+    const savedProduct = await productService.update(id, updatedProduct)
+    dispatch({
+      type: 'UPDATE_PRODUCT',
+      data: savedProduct
     })
   }
 }
