@@ -2,7 +2,6 @@ import './App.css'
 import React, { useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { clearUser, setUser } from '../reducers/userReducer'
-import { initProducts, setProducts } from '../reducers/productReducer'
 import { useDispatch, useSelector } from 'react-redux'
 import FilterBar from './FilterBar'
 import ItemList from './ItemList'
@@ -12,9 +11,9 @@ import LoginForm from './LoginForm'
 import NavBarMenu from './NavBarMenu'
 import Notification from './Notification'
 import ProductForm from './ProductForm'
+import { initProducts } from '../reducers/productReducer'
 import productService from '../services/products'
 import { setFilter } from '../reducers/filterReducer'
-import { setMessage } from '../reducers/messageReducer'
 
 const App = () => {
   const dispatch = useDispatch()
