@@ -12,6 +12,13 @@ const ProductForm = () => {
   const [name, setName] = useState('')
   const [category, setCategory] = useState('')
   const MAX_PRODUCT_NAME_LENGTH = 28
+  const CATEGORIES = [
+    'all',
+    'produce',
+    'dairy',
+    'frozen',
+    'meat',
+  ]
 
   const handleNameChange = (event) => {
     if (event.target.value.length < MAX_PRODUCT_NAME_LENGTH) {
@@ -44,6 +51,22 @@ const ProductForm = () => {
     history.push('/')
   }
 
+  const radioButton = (name) => {
+    return (
+      <div className="radio">
+        <label>
+          <input
+            type="radio"
+            value={name}
+            checked={category.toLowerCase() === name}
+            onChange={handleCategoryChange}
+          />
+          {name}
+        </label>
+      </div>
+    )
+  }
+
   return (
     <div id="product-form-splash">
       <div id="product-form-container">
@@ -58,16 +81,11 @@ const ProductForm = () => {
           </div>
           <div className="label-container emph">
             <label className="label">Name</label>
-            <input id="new-product-input" value={name} onChange={handleNameChange} />
+            <input id="new-product-input" type='text' value={name} onChange={handleNameChange} />
           </div>
           <div className="label-container emph">
             <label className="label">Category</label>
-            <select defaultValue='produce' onChange={handleCategoryChange}>
-              <option value="produce">Produce</option>
-              <option value="dairy">Dairy</option>
-              <option value="frozen">Frozen</option>
-              <option value="meat">Meat</option>
-            </select>
+            {CATEGORIES.map((category) => radioButton(category))}
           </div>
           <div>
             <button type="submit" id="product-submit">Add</button>
