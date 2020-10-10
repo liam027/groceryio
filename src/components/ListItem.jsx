@@ -8,14 +8,16 @@ const ListItem = ({ product }) => {
 
   return (
     <div className="list-card">
-      <span>{product.name}</span>
-      <div className='centered-flex pointer'>
+      <div className='counter centered-flex'>
+        <span>{product.name}</span>
+      </div>
+      <div className='counter centered-flex pointer'>
         <span onClick={counter.dec}>-</span>
       </div>
-      <div className='centered-flex'>
+      <div className='counter centered-flex'>
         <span>{counter.count}</span>
       </div>
-      <div className='centered-flex pointer'>
+      <div className='counter centered-flex pointer'>
         <span onClick={counter.inc}>+</span>
       </div>
     </div>

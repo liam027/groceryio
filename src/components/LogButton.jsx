@@ -16,7 +16,7 @@ const LogButton = ({ logOut }) => {
   const loginButton = () => {
     return (
       <div className='log-button-container' onClick={login}>
-        <Button id='log-button' variant="contained" color="primary">Login</Button>
+        <Button id='log-button' className='pointer' variant="contained" color="primary">Login</Button>
       </div>
     )
   }
@@ -24,7 +24,7 @@ const LogButton = ({ logOut }) => {
   const logoutButton = () => {
     return (
       <div className='log-button-container' onClick={logOut}>
-        <Button id='log-button' variant="contained" color="secondary">Logout</Button>
+        <Button id='log-button' className='pointer' variant="contained" color="secondary">Logout</Button>
       </div>
     )
   }

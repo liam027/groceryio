@@ -10,9 +10,9 @@ const TileItem = ({ product }) => {
     <div className="tile-item">
       <div className="name" onClick={counter.inc} >{product.name.toUpperCase()}</div>
       <div className="controls">
-        <div className="quantity noselect" onClick={counter.dec}>-</div>
+        <div className="quantity pointer" onClick={counter.dec}>-</div>
         <div className="delete noselect">{counter.count}</div>
-        <div className="quantity noselect" onClick={counter.inc}>+</div>
+        <div className="quantity pointer" onClick={counter.inc}>+</div>
       </div>
     </div>
   )

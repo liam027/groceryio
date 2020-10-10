@@ -44,7 +44,7 @@ const LoginForm = () => {
     <div id="login-form-splash">
       <div id="login-form-container">
         <Link to="/">
-          <div className="close-btn emph" onClick={closeForm}>
+          <div className="close-btn emph pointer" onClick={closeForm}>
             <div>X</div>
           </div>
         </Link>
