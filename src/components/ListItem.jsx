@@ -1,7 +1,6 @@
 import './listItem.css'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { deleteProduct } from '../reducers/productReducer'
 import useProductCounter from '../hooks/useProductCounter'
 
 const ListItem = ({ product }) => {

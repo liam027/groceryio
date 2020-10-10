@@ -5,7 +5,9 @@ const productReducer = (state = [], action) => {
   case 'NEW_PRODUCT':
     return state.concat(action.data)
   case 'DELETE_PRODUCT':
-    return state.filter((product) => product.id !== action.data)
+    return state.filter((product) => {
+      return product.id !== action.data
+    })
   case 'SET_PRODUCTS':
     return action.data
   case 'UPDATE_PRODUCT':

@@ -1,3 +1,4 @@
+import { deleteProduct } from '../reducers/productReducer'
 import { updateProduct } from '../reducers/productReducer'
 import { useDispatch } from 'react-redux'
 
@@ -14,6 +15,9 @@ const useProductCounter = (product) => {
   const dec = () => {
     if (count > 0) {
       dispatch(updateProduct(product.id, { ...product, quantity: product.quantity - 1 }))
+    }
+    else {
+      dispatch(deleteProduct(product.id))
     }
   }
 
