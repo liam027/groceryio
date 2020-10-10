@@ -1,14 +1,14 @@
 import './tileView.css'
-import ItemCard from './ItemCard'
 import PropTypes from 'prop-types'
 import React from 'react'
+import TileItem from './TileItem'
 
 const TileView = ({ products }) => {
 
   const populateProductCards = (prods) => (
     <>
       {prods.map((product) => (
-        <ItemCard key={product.id} product={product}/>
+        <TileItem key={product.id} product={product}/>
       ))}
     </>
   )

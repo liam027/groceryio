@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { clearUser, setUser } from '../reducers/userReducer'
 import { useDispatch, useSelector } from 'react-redux'
+import Container from '@material-ui/core/Container'
 import FilterBar from './FilterBar'
 import ListView from './ListView'
 import LogButton from './LogButton'
@@ -79,10 +80,10 @@ const App = () => {
   }
 
   return (
-    <div id='App'>
+    <Container id='App' maxWidth="lg">
       <Switch>
         <Route path='/login'>
-          <LoginForm  />
+          <LoginForm />
         </Route>
         <Route path='/add_product'>
           <ProductForm />
@@ -91,15 +92,17 @@ const App = () => {
 
       <header className='navbar'>
         <NavBarMenu />
-        <span className='title'>Groceryio</span>
+        <div className='title-container'>
+          Groceryio
+        </div>
         <LogButton logOut={logOut} />
       </header>
 
-      <Notification />
       <FilterBar filters={CATEGORIES} defineFilter={defineFilter} />
+      <Notification />
       {view === 'list' && listView()}
       {view === 'tile' && tileView()}
-    </div>
+    </Container>
   )
 }
 

@@ -1,0 +1,17 @@
+.list-card{
+  display: grid;
+  grid-template-columns: 8fr 1fr 1fr 1fr;
+  padding: 5px 10px;
+  margin: 5px 5px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 2px;
+  box-shadow: 5px 5px rgb(167, 167, 167) ;
+}
+.list-card .centered-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pointer {
+  cursor: pointer;
+}

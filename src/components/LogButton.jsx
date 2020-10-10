@@ -1,4 +1,5 @@
 import './logButton.css'
+import Button from './Button'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
@@ -15,7 +16,7 @@ const LogButton = ({ logOut }) => {
   const loginButton = () => {
     return (
       <div className='log-button-container' onClick={login}>
-        <span className='log-button'>Login</span>
+        <Button id='log-button' variant="contained" color="primary">Login</Button>
       </div>
     )
   }
@@ -23,7 +24,7 @@ const LogButton = ({ logOut }) => {
   const logoutButton = () => {
     return (
       <div className='log-button-container' onClick={logOut}>
-        <span className='log-button'>Logout</span>
+        <Button id='log-button' variant="contained" color="secondary">Logout</Button>
       </div>
     )
   }

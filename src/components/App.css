@@ -27,7 +27,9 @@ a:visited {
   height: 100%;
 }
 #App {
-  height: 100%;
+  max-width: 100%;
+  margin: 0px;
+  padding: 0px;
 }
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
@@ -44,7 +46,10 @@ a:visited {
   padding: 20px 0px;
   background-color: black;
 }
-.title{
+.title-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   grid-column: 2;
   text-align: center;
   font-size: 2em;

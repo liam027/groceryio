@@ -1,4 +1,6 @@
 import './navBarMenu.css'
+import Button from './Button'
+import { IconButton } from '@material-ui/core'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { setView } from '../reducers/viewReducer'
@@ -11,11 +13,11 @@ const NavBarMenu = () => {
 
   return (
     <span id="navbar-menu">
-      <span className="button border list" onClick={() => dispatch(setView('list'))}>LIST</span>
-      <span className="button border tile" onClick={() => dispatch(setView('tile'))}>TILE</span>
-      <span className='button solid' onClick={() => history.push('/add_product')}>
+      <Button variant="contained" color="primary" mr={2} onClick={() => dispatch(setView('list'))}>LIST</Button>
+      <Button variant="contained" color="primary" mr={2} onClick={() => dispatch(setView('tile'))}>TILE</Button>
+      <IconButton color="primary" aria-label="Add product" onClick={() => history.push('/add_product')}>
         <span className='add-product-button'></span>
-      </span>
+      </IconButton>
     </span>
   )
 }

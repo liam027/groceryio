@@ -4,11 +4,7 @@
   align-items: center;
   width: 100%;
 }
-.log-button {
-  margin: 0px 40px;
-  padding: 10px 20px;
-  color: white;
-  background-color: #3568ff;
-  border-radius: 10px;
-  cursor: pointer;
+#log-button {
+  margin-right: 40px;
+  width: 100px;
 }

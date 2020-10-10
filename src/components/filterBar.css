@@ -1,8 +1,9 @@
 .filter-bar {
   display: flex;
-  width: 80%;
   margin: auto;
+  padding: 10px 0;
   justify-content: space-around;
+  background-color: grey;
 }
 .filter-button {
   border: 2px solid black;

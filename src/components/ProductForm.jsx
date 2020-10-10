@@ -1,4 +1,5 @@
 import './productForm.css'
+import { Button, TextField } from '@material-ui/core'
 import { Link, useHistory } from 'react-router-dom'
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
@@ -79,16 +80,15 @@ const ProductForm = () => {
           <div className="header">
             <div>Add Product</div>
           </div>
-          <div className="label-container emph">
-            <label className="label">Name</label>
-            <input id="new-product-input" type='text' value={name} onChange={handleNameChange} />
+          <div>
+            <TextField label='name' onChange={handleNameChange} />
           </div>
           <div className="label-container emph">
             <label className="label">Category</label>
             {CATEGORIES.map((category) => radioButton(category))}
           </div>
           <div>
-            <button type="submit" id="product-submit">Add</button>
+            <Button type="submit" id="product-submit">Add Product</Button>
           </div>
         </form>
       </div>
