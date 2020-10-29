@@ -4,32 +4,19 @@ import { Route, Switch } from 'react-router-dom'
 import { clearUser, setUser } from '../reducers/userReducer'
 import { useDispatch, useSelector } from 'react-redux'
 import Container from '@material-ui/core/Container'
-import FilterBar from './FilterBar'
-import ListView from './ListView'
+import Groceries from './Groceries'
 import LogButton from './LogButton'
 import LoginForm from './LoginForm'
 import NavBarMenu from './NavBarMenu'
-import Notification from './Notification'
 import ProductForm from './ProductForm'
-import TileView from './TileView'
+import Welcome from './Welcome'
 import { initProducts } from '../reducers/productReducer'
 import productService from '../services/products'
-import { setFilter } from '../reducers/filterReducer'
 
 const App = () => {
   const dispatch = useDispatch()
-  const products = useSelector(state => state.products)
-  const filter = useSelector(state => state.filter)
-  const view = useSelector(state => state.view)
-  console.log(view)
+  const user = useSelector(state => state.user)
 
-  const CATEGORIES = [
-    'all',
-    'produce',
-    'dairy',
-    'frozen',
-    'meat',
-  ]
 
   const getLoggedUser = () => {
     const loggedUser = window.localStorage.getItem('loggedGroceryIOUser')
@@ -48,35 +35,20 @@ const App = () => {
 
   useEffect(getProductsHook, []) // [] = only run after first render
 
-  const productsToDisplay = () => {
-    if (filter === 'all') {
-      return products
-    }
-    else {
-      return products.filter((product) => product.category === filter)
-    }
-  }
-
-  const defineFilter = (category) => {
-    dispatch(setFilter(category))
-  }
-
   const logOut = () => {
     dispatch(clearUser())
     productService.setToken(null)
     window.localStorage.removeItem('loggedGroceryIOUser')
   }
 
-  const tileView = () => {
+  const welcome = () => {
     return (
-      <TileView products={productsToDisplay()} />
+      <Welcome />
     )
   }
 
-  const listView = () => {
-    return (
-      <ListView products={productsToDisplay()} />
-    )
+  const groceries = () => {
+    return <Groceries />
   }
 
   return (
@@ -93,15 +65,14 @@ const App = () => {
       <header className='navbar'>
         <NavBarMenu />
         <div className='title-container'>
-          Groceryio
+          Grocery.io
         </div>
         <LogButton logOut={logOut} />
       </header>
 
-      <FilterBar filters={CATEGORIES} defineFilter={defineFilter} />
-      <Notification />
-      {view === 'list' && listView()}
-      {view === 'tile' && tileView()}
+      {user ?  groceries() : welcome()}
+
+      <div>Icons made by <a href="https://www.flaticon.com/authors/dinosoftlabs" title="DinosoftLabs">DinosoftLabs</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     </Container>
   )
 }
