@@ -10,30 +10,21 @@ import LoginForm from './LoginForm'
 import NavBarMenu from './NavBarMenu'
 import ProductForm from './ProductForm'
 import Welcome from './Welcome'
-import { initProducts } from '../reducers/productReducer'
 import productService from '../services/products'
 
 const App = () => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
 
-
   const getLoggedUser = () => {
-    const loggedUser = window.localStorage.getItem('loggedGroceryIOUser')
-    if (loggedUser) {
-      const user = JSON.parse(loggedUser)
-      dispatch(setUser(user))
-      productService.setToken(user.token)
+    const cookie = window.localStorage.getItem('loggedGroceryIOUser')
+    if (cookie) {
+      let rememberedUser = JSON.parse(cookie)
+      dispatch(setUser(rememberedUser))
+      productService.setToken(rememberedUser.token)
     }
   }
-
   useEffect(getLoggedUser, []) // [] = only run after first render
-
-  const getProductsHook = () => {
-    dispatch(initProducts())
-  }
-
-  useEffect(getProductsHook, []) // [] = only run after first render
 
   const logOut = () => {
     dispatch(clearUser())

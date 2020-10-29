@@ -1,4 +1,5 @@
 import productService from '../services/products'
+import userService from '../services/user'
 
 const productReducer = (state = [], action) => {
   switch (action.type) {
@@ -32,9 +33,9 @@ export const createProduct = (data) => {
   }
 }
 
-export const initProducts = () => {
+export const initProducts = (user_id) => {
   return async dispatch => {
-    const products = await productService.getAll()
+    const products = await userService.get(user_id)
     dispatch({
       type: 'SET_PRODUCTS',
       data: products
