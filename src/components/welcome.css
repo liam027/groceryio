@@ -1,0 +1,23 @@
+#welcome-container{
+  width: 100%;
+  height: 100vh;
+  padding-top: 100px;
+  background-image: radial-gradient(circle at 50% 30%, var(--light-accent) 0, var(--navbar) 100%);
+}
+#cart-icon-container{
+  display: flex;
+  justify-content: center;
+}
+#cart-icon {
+  z-index: 1;
+}
+#core-description{
+  position: relative;
+  top: -50px;
+  background-color: var(--background);
+  text-align: center;
+  font-size: 2em;
+  padding: 30px;
+  z-index: 2;
+  border-radius: 20px;
+}
