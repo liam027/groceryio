@@ -28,9 +28,6 @@ const LoginForm = () => {
     }
     catch (exception) {
       dispatch(setMessage('Wrong credentials'))
-      setTimeout(() => {
-        dispatch(setMessage(null))
-      }, 5000)
     }
   }
 
