@@ -27,7 +27,7 @@ const Welcome = () => {
           <h2>Organize your groceries and waste less!</h2>
         </Box>
         <Box>
-          <Tabs onChange={handleTabChange} aria-label="simple tabs example">
+          <Tabs centered onChange={handleTabChange} aria-label="simple tabs example">
             <Tab value="signup" label="Sign Up" />
             <Tab value="login" label="Login" />
           </Tabs>
