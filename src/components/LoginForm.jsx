@@ -2,7 +2,6 @@ import './loginForm.css'
 import { Link, useHistory } from 'react-router-dom'
 import React, { useState } from 'react'
 import loginService from '../services/login'
-import productsService from '../services/products'
 import { setMessage } from '../reducers/messageReducer'
 import { setUser } from '../reducers/userReducer'
 import { useDispatch } from 'react-redux'
@@ -16,11 +15,7 @@ const LoginForm = () => {
   const handleLogin = async (event) => {
     event.preventDefault()
     try {
-      console.log({ username, password })
       const user = await loginService.login({ username, password })
-
-      window.localStorage.setItem('loggedGroceryIOUser', JSON.stringify(user))
-      productsService.setToken(user.token)
       dispatch(setUser(user))
       setUsername('')
       setPassword('')

@@ -1,3 +1,5 @@
+import productsService from '../services/products'
+
 const userReducer = (state = null, action) => {
   switch (action.type) {
   case 'SET_USER':
@@ -10,6 +12,9 @@ const userReducer = (state = null, action) => {
 }
 
 export const setUser = user => {
+  window.localStorage.setItem('loggedGroceryIOUser', JSON.stringify(user))
+  productsService.setToken(user.token)
+
   return {
     type: 'SET_USER',
     user,
