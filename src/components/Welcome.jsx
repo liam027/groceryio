@@ -1,48 +1,15 @@
 import './welcome.css'
-import { Box, Button, Container, TextField } from '@material-ui/core'
+import { Box, Container, Tab, Tabs } from '@material-ui/core'
 import React, { useState } from 'react'
-import formatUserError from '../utils/formatUserError'
-import loginService from '../services/login'
-import { setUser } from '../reducers/userReducer'
-import { useDispatch } from 'react-redux'
-import userService from '../services/user'
+import LoginForm from './LoginForm'
+import SignupForm from './SignupForm'
+import TabPanel from './TabPanel'
 
 const Welcome = () => {
-  const dispatch = useDispatch()
-  const [name, setName] = useState('')
-  const [nameError, setNameError] = useState(null)
-  const [password, setPassword] = useState('')
-  const [passwordError, setPasswordError] = useState('')
-  const MAX_USERNAME_LENGTH = 28
+  const [welcomeState, setWelcomeState] = useState('signup')
 
-  const handleNameChange = (event) => {
-    if (event.target.value.length < MAX_USERNAME_LENGTH) {
-      setName(event.target.value)
-    }
-  }
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value)
-  }
-
-  const submitUser = async (event) => {
-    event.preventDefault()
-    const user = {
-      username: name,
-      password: password
-    }
-    try {
-      await userService.create(user)
-      const newUser = await loginService.login(user)
-      setName('')
-      setPassword('')
-      setNameError(null)
-      dispatch(setUser(newUser))
-    }
-    catch (exception) {
-      let formattedError = formatUserError(exception)
-      setNameError(formattedError)
-    }
+  const handleTabChange = (event, newState) => {
+    setWelcomeState(newState)
   }
 
   return (
@@ -56,19 +23,21 @@ const Welcome = () => {
           width="800" />
       </Container>
       <Container id="core-description">
-        <Box>Organize your groceries and waste less, create an account below to get started.</Box>
-        <form id="user-form" onSubmit={submitUser}>
-          <Box>
-            <TextField error={nameError !== null} label='Username' helperText={nameError} onChange={handleNameChange} />
-          </Box>
-          <Box>
-            <TextField label='Password' type="password" autoComplete="current-password" helperText={passwordError} onChange={handlePasswordChange} />
-          </Box>
-          <br/>
-          <Box>
-            <Button type="submit" id="product-submit">Let's go!</Button>
-          </Box>
-        </form>
+        <Box>
+          <h2>Organize your groceries and waste less!</h2>
+        </Box>
+        <Box>
+          <Tabs onChange={handleTabChange} aria-label="simple tabs example">
+            <Tab value="signup" label="Sign Up" />
+            <Tab value="login" label="Login" />
+          </Tabs>
+        </Box>
+        <TabPanel value={welcomeState} index="signup">
+          <SignupForm />
+        </TabPanel>
+        <TabPanel value={welcomeState} index="login">
+          <LoginForm />
+        </TabPanel>
       </Container>
 
     </Box>

@@ -1,16 +1,16 @@
-import './loginForm.css'
-import { Link, useHistory } from 'react-router-dom'
+import { Box, Button, TextField } from '@material-ui/core'
 import React, { useState } from 'react'
+import formatUserError from '../utils/formatUserError'
 import loginService from '../services/login'
-import { setMessage } from '../reducers/messageReducer'
 import { setUser } from '../reducers/userReducer'
 import { useDispatch } from 'react-redux'
 
 const LoginForm = () => {
   const dispatch = useDispatch()
-  const history = useHistory()
   const [username, setUsername] = useState('')
+  const [nameError, setNameError] = useState(null)
   const [password, setPassword] = useState('')
+  const [passwordError, setPasswordError] = useState('')
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -19,46 +19,25 @@ const LoginForm = () => {
       dispatch(setUser(user))
       setUsername('')
       setPassword('')
-      history.push('/')
     }
     catch (exception) {
-      dispatch(setMessage('Wrong credentials'))
+      let formattedError = formatUserError(exception)
+      setNameError(formattedError)
     }
-  }
-
-  const closeForm = () => {
-    setUsername('')
-    setPassword('')
-    history.push('/')
   }
 
   return (
-    <div id="login-form-splash">
-      <div id="login-form-container">
-        <Link to="/">
-          <div className="close-btn emph pointer" onClick={closeForm}>
-            <div>X</div>
-          </div>
-        </Link>
-        <form id="login-form" onSubmit={handleLogin}>
-          <div className="header">
-            <div>Login</div>
-          </div>
-          <div className="label-container emph">
-            <label className="label">Username</label>
-            <input id="username" value={username} onChange={({ target }) => setUsername(target.value)} />
-          </div>
-          <div className="label-container emph">
-            <label className="label">Password</label>
-            <input id="password" value={password} onChange={({ target }) => setPassword(target.value)} />
-          </div>
-          <div>
-            <button type="submit" id="login-submit">Login</button>
-          </div>
-          <div>Not signed up? Create an account to save your lists and recommendations.</div>
-        </form>
-      </div>
-    </div>
+    <form id="login-form" onSubmit={handleLogin}>
+      <Box>
+        <TextField error={nameError !== null} label='Username' helperText={nameError} onChange={({ target }) => setUsername(target.value)} />
+      </Box>
+      <Box>
+        <TextField error={nameError !== null} label='Password' helperText={nameError} onChange={({ target }) => setPassword(target.value)} />
+      </Box>
+      <Box>
+        <Button type="submit" id="login-submit">Login</Button>
+      </Box>
+    </form>
   )
 }
 

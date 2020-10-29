@@ -4,6 +4,7 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.3);
+  z-index: 2;
 }
 #login-form-container {
   display: flex;
