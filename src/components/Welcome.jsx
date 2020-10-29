@@ -1,10 +1,11 @@
 import './welcome.css'
 import { Box, Button, Container, TextField } from '@material-ui/core'
 import React, { useState } from 'react'
+import formatUserError from '../utils/formatUserError'
+import loginService from '../services/login'
 import { setUser } from '../reducers/userReducer'
 import { useDispatch } from 'react-redux'
 import userService from '../services/user'
-import formatUserError from '../utils/formatUserError'
 
 const Welcome = () => {
   const dispatch = useDispatch()
@@ -31,11 +32,12 @@ const Welcome = () => {
       password: password
     }
     try {
-      const newUser = await userService.create(user)
+      await userService.create(user)
+      const newUser = await loginService.login(user)
       setName('')
       setPassword('')
-      dispatch(setUser(newUser))
       setNameError(null)
+      dispatch(setUser(newUser))
     }
     catch (exception) {
       let formattedError = formatUserError(exception)
