@@ -35,9 +35,10 @@ const Welcome = () => {
       setName('')
       setPassword('')
       dispatch(setUser(newUser))
+      setNameError(null)
     }
     catch (exception) {
-      let formattedError = formatUserError(exception.response.data.error)
+      let formattedError = formatUserError(exception)
       setNameError(formattedError)
     }
   }
@@ -56,10 +57,10 @@ const Welcome = () => {
         <Box>Organize your groceries and waste less, create an account below to get started.</Box>
         <form id="user-form" onSubmit={submitUser}>
           <Box>
-            <TextField error={nameError} label='Username' helperText={nameError} onChange={handleNameChange} />
+            <TextField error={nameError !== null} label='Username' helperText={nameError} onChange={handleNameChange} />
           </Box>
           <Box>
-            <TextField label='Password' helperText={passwordError} onChange={handlePasswordChange} />
+            <TextField label='Password' type="password" autoComplete="current-password" helperText={passwordError} onChange={handlePasswordChange} />
           </Box>
           <br/>
           <Box>
