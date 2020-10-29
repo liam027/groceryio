@@ -32,7 +32,7 @@ const LoginForm = () => {
         <TextField error={nameError !== null} label='Username' helperText={nameError} onChange={({ target }) => setUsername(target.value)} />
       </Box>
       <Box>
-        <TextField error={nameError !== null} label='Password' helperText={nameError} onChange={({ target }) => setPassword(target.value)} />
+        <TextField type="password" error={nameError !== null} label='Password' helperText={nameError} onChange={({ target }) => setPassword(target.value)} />
       </Box>
       <Box>
         <Button type="submit" id="login-submit">Login</Button>
