@@ -7,11 +7,6 @@ const setToken = (newToken) => {
   token = `bearer ${newToken}`
 }
 
-const getAll = async () => {
-  const response = await axios.get(baseUrl)
-  return response.data
-}
-
 const create = async (newObject) => {
   const config = {
     headers: { Authorization: token }
@@ -30,4 +25,4 @@ const deleteProduct = async (id) => {
   return id
 }
 
-export default { getAll, create, update, deleteProduct, setToken }
+export default { create, update, deleteProduct, setToken }
