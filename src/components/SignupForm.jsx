@@ -44,17 +44,18 @@ const SignupForm = () => {
     setPassword(event.target.value)
   }
 
+  const inputContainerStyle = { minHeight: '80px'}
+
   return (
     <form id="user-form" onSubmit={submitUser}>
-      <Box>
+      <Box style={inputContainerStyle}>
         <TextField error={usernameError !== null} label='Username' helperText={usernameError} onChange={handleNameChange} />
       </Box>
-      <Box>
+      <Box style={inputContainerStyle}>
         <TextField label='Password' type="password" autoComplete="current-password" helperText={passwordError} onChange={handlePasswordChange} />
       </Box>
-      <br />
-      <Box>
-        <Button type="submit" id="product-submit">Let's go!</Button>
+      <Box style={inputContainerStyle}>
+        <Button variant="contained" color="default" type="submit" id="product-submit">Sign up!</Button>
       </Box>
     </form>
   )

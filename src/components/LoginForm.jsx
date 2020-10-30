@@ -26,16 +26,18 @@ const LoginForm = () => {
     }
   }
 
+  const inputContainerStyle = { minHeight: '80px'}
+
   return (
     <form id="login-form" onSubmit={handleLogin}>
-      <Box>
+      <Box style={inputContainerStyle}>
         <TextField error={nameError !== null} label='Username' helperText={nameError} onChange={({ target }) => setUsername(target.value)} />
       </Box>
-      <Box>
+      <Box style={inputContainerStyle}>
         <TextField type="password" error={nameError !== null} label='Password' helperText={nameError} onChange={({ target }) => setPassword(target.value)} />
       </Box>
-      <Box>
-        <Button type="submit" id="login-submit">Login</Button>
+      <Box style={inputContainerStyle}>
+        <Button variant="contained" color="default" type="submit" id="login-submit">Login</Button>
       </Box>
     </form>
   )
